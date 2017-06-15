@@ -3,7 +3,7 @@ class Name {
     Object.assign(this, {nickname, content, type})
   }
   getNickname () {
-    return this.nickname
+    return `${this.type}: ${this.nickname}`
   }
 }
 
