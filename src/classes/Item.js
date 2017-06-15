@@ -1,9 +1,12 @@
-class Item {
-  constructor ({name, type}) {
-    this._types = ['equipable', 'consumable']
-    if (!this._types.includes(type)) throw new Error('Invalid item type')
+import { item } from '../constants'
 
-    Object.assign(this, {name, type})
+class Item {
+  constructor ({name, weight = 1, type}) {
+    if (!this._getTypes().includes(type)) throw new Error('Invalid item type')
+    Object.assign(this, {name, weight, type})
+  }
+  _getTypes () {
+    return [item.EQUIPABLE, item.CONSUMABLE]
   }
 }
 
