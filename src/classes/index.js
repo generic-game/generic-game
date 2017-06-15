@@ -1,7 +1,6 @@
 export Attack from './Attack'
 export Characteristic from './Characteristic'
 export Character from './Character'
-export CubicBezier from './CubicBezier'
 export Currency from './Currency'
 export Effect from './Effect'
 export index from './index'
