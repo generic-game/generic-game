@@ -18,6 +18,16 @@ class Character {
     })
     return statuses
   }
+  earnCurrency (currency) {
+    return new Promise((resolve, reject) => {
+      if (this.currencies[currency.name]) {
+        this.currencies[currency.name] += currency.value
+      } else {
+        this.currencies[currency.name] = currency.value
+      }
+      resolve(this.currencies[currency.name])
+    })
+  }
 }
 
 export default Character
