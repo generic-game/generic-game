@@ -23,6 +23,15 @@ class Inventory {
       resolve(item)
     })
   }
+  get (index) {
+    if (index >= 0 && index <= this.items.length - 1) {
+      let item = this.items[index]
+      this.items.splice(index, 1)
+      return item
+    } else {
+      return null
+    }
+  }
   getWeight () {
     if (this.items.length > 0) {
       return this.items.reduce((a, b) => a + b.weight, 0)

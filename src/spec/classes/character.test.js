@@ -7,15 +7,28 @@ let hero = new gg.class.Character({
   ]
 })
 let sword = new gg.class.Weapon({
-  name: 'Greatsword',
+  name: 'Great sword',
   type: gg.const.item.EQUIPABLE,
+  slotType: {name: 'handheld'},
   attacks: [
     new gg.class.Characteristic({name: gg.const.characteristic.ATTACK, value: 10})
   ]
 })
+let dagger = new gg.class.Weapon({
+  name: 'Dagger',
+  type: gg.const.item.EQUIPABLE,
+  slotType: {name: 'handheld'},
+  attacks: [
+    new gg.class.Characteristic({name: gg.const.characteristic.ATTACK, value: 1})
+  ]
+})
 let helmet = new gg.class.Vest({
   name: 'Armet',
-  type: gg.const.item.EQUIPABLE
+  slotType: {name: 'helmet'},
+  type: gg.const.item.EQUIPABLE,
+  attacks: [
+    new gg.class.Characteristic({name: gg.const.characteristic.LIFE, value: 50})
+  ]
 })
 
 describe('generic hero', () => {
@@ -28,13 +41,11 @@ describe('inventory', () => {
   test('should able to carry a item', () => {
     hero.inventory.carry(sword).then(() => {
       expect(hero.inventory.items.length).toBe(1)
-      expect(hero.inventory.items[0].name).toBe('Greatsword')
+      expect(hero.inventory.items[0].name).toBe('Great sword')
     }).catch(error)
   })
   test('should not be able to carry excess of items', () => {
-    hero.inventory.carry(sword).catch(message => {
-      expect(message).toBe('Exceeded inventory capacity')
-    })
+    expect(hero.inventory.carry(sword)).rejects.toEqual(new Error('Exceeded inventory capacity'))
   })
   test('should able to drop a item', () => {
     hero.inventory.drop(sword).then(() => {
@@ -44,5 +55,32 @@ describe('inventory', () => {
         expect(hero.inventory.items[0].name).toBe('Armet')
       }).catch(error)
     }).catch(error)
+  })
+  test('should able to take item from inventory', () => {
+    let shouldBeHelmet = hero.inventory.get(0)
+    expect(hero.inventory.items.length).toBe(0)
+    expect(shouldBeHelmet.name).toBe('Armet')
+  })
+})
+
+describe('equipament', () => {
+  test('should not unable to equip in unexistent slots', () => {
+    expect(hero.equipament.equip(dagger)).rejects.toEqual(new Error('No available slot'))
+  })
+  test('should able to equip a item', () => {
+    hero.equipament.addSlot({type: 'handheld'})
+    hero.equipament.equip(sword).then((equiped) => {
+      expect(equiped.name).toBe('Great sword')
+    }).catch(error)
+  })
+  test('should prevent to equip in unavailable slots', () => {
+    expect(hero.equipament.equip(dagger)).rejects.toEqual(new Error('Exceeded slot capacity'))
+  })
+  test('should compute items characteristic changes', () => {
+    // Only the Great sword should be equipped, therefore attack should equal 10
+    expect(hero.equipament.getModifiers()[0].value).toBe(10)
+  })
+  test('should change character characteristics after the item is equiped', () => {
+    expect(hero.status().attack).toBe(10)
   })
 })
