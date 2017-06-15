@@ -1,5 +1,5 @@
 class Characteristic {
-  constructor ({name, value}) {
+  constructor ({name, value = 0}) {
     Object.assign(this, {name, value})
   }
 }

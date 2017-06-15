@@ -1,5 +1,5 @@
 class Character {
-  constructor ({name, experience, items, currencies, statuses}) {
+  constructor ({name, experience = 0, items = [], currencies = [], statuses = []}) {
     Object.assign(this, {name, experience, items, currencies, statuses})
   }
 }

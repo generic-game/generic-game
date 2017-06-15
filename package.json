@@ -4,11 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "dev": "nodemon example/index.js --exec babel-node --watch example --watch src",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "nodemon": "^1.11.0",
     "babel-cli": "^6.24.0"
   },
   "devDependencies": {
