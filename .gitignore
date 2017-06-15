@@ -1,0 +1,4 @@
+/node_modules
+/console.log
+/examples/data
+!*.keep
