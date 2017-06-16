@@ -2,6 +2,16 @@ import { characteristic } from '../constants'
 
 class Battle {
   constructor ({character}) {
+    this.const = {
+      events: {
+        BATTLE_BEFORE_ATTACK: 'battle:[before]attack',
+        BATTLE_AFTER_ATTACK: 'battle:[after]attack',
+        BATTLE_BEFORE_DEFEND: 'battle:[before]defend',
+        BATTLE_AFTER_DEFEND: 'battle:[after]defend',
+        BATTLE_BEFORE_TAKING_DAMAGE: 'battle:[before]takingDamage',
+        BATTLE_AFTER_TAKING_DAMAGE: 'battle:[after]takingDamage'
+      }
+    }
     Object.assign(this, {character})
   }
   conflict (character) {
@@ -47,14 +57,16 @@ class Battle {
       }
       Promise.all(weapons.map(weapon => {
         return new Promise((resolve, reject) => {
-          weapon.getAttacks().reduce((iterator, weaponAttack) => {
+          weapon.floorDamage += (attack || 0)
+          weapon.getAttacks().reduce((iterator, attack) => {
             return iterator.then(() => {
               return new Promise((resolve, reject) => {
                 setTimeout(() => {
-                  weapon.floorDamage += (attack || 0)
-                  console.log(`${this.character.name} attacked ${character.name}`)
-                  character.battle.defend(weaponAttack).then(resolve)
-                }, weaponAttack.delay || 0)
+                  let data = { attack }
+                  this.character.events.emit(this.const.events.BATTLE_BEFORE_ATTACK, data)
+                  character.battle.defend(data.attack).then(resolve)
+                  this.character.events.emit(this.const.events.BATTLE_AFTER_ATTACK, data)
+                }, attack.delay || 0)
               })
             })
           }, Promise.resolve([])).then(resolve)
@@ -66,14 +78,20 @@ class Battle {
   }
   defend (attack) {
     return new Promise(resolve => {
-      console.log(`${this.character.name} deffended ${attack.damage} attack`)
-      this._takeDamage(attack.damage)
+      let data = { attack }
+      this.character.events.emit(this.const.events.BATTLE_BEFORE_DEFEND, data)
+      this._takeDamage(data.attack.damage)
+      this.character.events.emit(this.const.events.BATTLE_AFTER_DEFEND, data)
       resolve()
     })
   }
   _takeDamage (damage) {
     let defense = this.character.characteristics.getValueByName(characteristic.DEFENSE)
-    this.character.characteristics.increase(characteristic.DAMAGE_TAKEN, damage - defense < 0 ? 0 : damage - defense)
+    damage = damage - defense < 0 ? 0 : damage - defense
+    let data = {status: { damage }}
+    this.character.events.emit(this.const.events.BATTLE_BEFORE_TAKING_DAMAGE, data)
+    this.character.characteristics.increase(characteristic.DAMAGE_TAKEN, data.status.damage)
+    this.character.events.emit(this.const.events.BATTLE_AFTER_TAKING_DAMAGE, data)
   }
 }
 
