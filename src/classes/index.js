@@ -1,5 +1,7 @@
 export Attack from './Attack'
 export Characteristic from './Characteristic'
+export Characteristics from './Characteristics'
+export Status from './Status'
 export Character from './Character'
 export Currency from './Currency'
 export Effect from './Effect'

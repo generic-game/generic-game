@@ -5,11 +5,9 @@ hero.equipament.addSlot({type: 'handheld'})
 hero.equipament.equip(factory.sword())
 
 let villian = factory.villian()
-let battle = new gg.class.Battle({
-  attackers: [hero],
-  defenders: [villian]
-})
 
-battle.conflict(hero, villian).then(() => {
+hero.battle.conflict(villian).then(() => {
   console.log('Done')
 }).catch(error)
+
+process.on('unhandledException', (err) => console.log(err))

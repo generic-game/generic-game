@@ -57,7 +57,7 @@ describe('equipament', () => {
     })
   })
   test('should change character characteristics after the item is equiped', () => {
-    expect(hero.status().defense).toBe(1)
+    expect(hero.status.get().defense).toBe(1)
   })
 })
 
