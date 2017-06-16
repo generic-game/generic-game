@@ -9,6 +9,6 @@ describe('weapon', () => {
     expect(Object.keys(attack)).toContain('delay')
     expect(Object.keys(attack)).toContain('effects')
     expect(attack.damage).toBe(10)
-    expect(attack.delay).toBe(250)
+    expect(attack.delay).toBe(100)
   })
 })
