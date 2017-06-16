@@ -1,7 +1,11 @@
 const LIFE = 'life'
+const DAMAGE_TAKEN = 'damageTaken'
 const ATTACK = 'attack'
+const DEFENSE = 'defense'
 
 export {
   LIFE,
-  ATTACK
+  DAMAGE_TAKEN,
+  ATTACK,
+  DEFENSE
 }

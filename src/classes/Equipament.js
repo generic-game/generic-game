@@ -1,4 +1,5 @@
 import Slot from './Slot'
+import Weapon from './Weapon'
 
 class Equipament {
   constructor ({items = [], slots = []}) {
@@ -24,6 +25,9 @@ class Equipament {
   }
   addSlot ({type, capacity = 1}) {
     this.slots.push(new Slot({type, capacity}))
+  }
+  getWeapons () {
+    return this.items.filter(item => item instanceof Weapon)
   }
   getModifiers () {
     return this.items.filter(item => item.effects || item.attacks).reduce((modifiers, item) => {

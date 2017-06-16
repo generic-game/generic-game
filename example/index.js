@@ -1,19 +1,15 @@
-import GenericGame from '../src'
+import { gg, factory, error } from '../src/spec/helpers'
 
-const gg = new GenericGame()
+let hero = factory.hero()
+hero.equipament.addSlot({type: 'handheld'})
+hero.equipament.equip(factory.sword())
 
-let hero = new gg.class.Character({
-  name: 'Generic hero',
-  statuses: [
-    new gg.class.Characteristic({name: gg.const.characteristic.LIFE, value: 100})
-  ]
-})
-let sword = new gg.class.Weapon({
-  name: 'Greatsword',
-  type: gg.const.item.EQUIPABLE,
-  attacks: [
-    new gg.class.Characteristic({name: gg.const.characteristic.ATTACK, value: 10})
-  ]
+let villian = factory.villian()
+let battle = new gg.class.Battle({
+  attackers: [hero],
+  defenders: [villian]
 })
 
-console.log(sword)
+battle.conflict(hero, villian).then(() => {
+  console.log('Done')
+}).catch(error)
