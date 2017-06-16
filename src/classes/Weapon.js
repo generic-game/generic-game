@@ -1,9 +1,9 @@
 import Item from './Item'
 
 class Weapon extends Item {
-  constructor ({name, type, slotType, delay, attacks, floorDamage = 0}) {
+  constructor ({name, type, slotType, attacks, floorDamage = 0}) {
     super({name, type, slotType})
-    Object.assign(this, {attacks, delay, floorDamage})
+    Object.assign(this, {attacks, floorDamage})
   }
   getAttacks () {
     return this.attacks.map(attack => {

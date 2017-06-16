@@ -18,9 +18,8 @@ const factory = {
       name: 'Great sword',
       type: gg.const.item.EQUIPABLE,
       slotType: {name: 'handheld'},
-      delay: 250,
       attacks: [
-        new gg.class.Attack({damage: 10})
+        new gg.class.Attack({damage: 10, delay: 100})
       ]
     })
   },
@@ -29,9 +28,8 @@ const factory = {
       name: 'Dagger',
       type: gg.const.item.EQUIPABLE,
       slotType: {name: 'handheld'},
-      delay: 1,
       attacks: [
-        new gg.class.Attack({damage: 1})
+        new gg.class.Attack({damage: 1, delay: 1})
       ]
     })
   },

@@ -6,7 +6,6 @@ class Battle {
   }
   conflict (character) {
     return new Promise((resolve, reject) => {
-      console.log('Starting conflict')
       const noWeapons = (result) => {
         if (typeof result === 'boolean') {
           return false
@@ -47,24 +46,28 @@ class Battle {
         reject(new Error('Character can\'t attack without a weapon'))
       }
       Promise.all(weapons.map(weapon => {
-        return new Promise(resolve => {
-          setTimeout(() => {
-            weapon.floorDamage += (attack || 0)
-            console.log(`${this.character.name} attacked ${character.name}`)
-            character.battle.defend(weapon).then(resolve)
-          }, weapon.delay || 0)
+        return new Promise((resolve, reject) => {
+          weapon.getAttacks().reduce((iterator, weaponAttack) => {
+            return iterator.then(() => {
+              return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                  weapon.floorDamage += (attack || 0)
+                  console.log(`${this.character.name} attacked ${character.name}`)
+                  character.battle.defend(weaponAttack).then(resolve)
+                }, weaponAttack.delay || 0)
+              })
+            })
+          }, Promise.resolve([])).then(resolve)
         })
       })).then(() => {
         resolve(character.battle.isAlive())
       })
     })
   }
-  defend (weapon) {
+  defend (attack) {
     return new Promise(resolve => {
-      weapon.getAttacks().forEach(attack => {
-        console.log(`${this.character.name} deffended ${attack.damage} attack`)
-        this._takeDamage(attack.damage)
-      })
+      console.log(`${this.character.name} deffended ${attack.damage} attack`)
+      this._takeDamage(attack.damage)
       resolve()
     })
   }
