@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon example/index.js --exec babel-node --watch example --watch src",
+    "devtest": "npm run test -- --watch src",
     "test": "jest --silent"
   },
   "author": "",
@@ -25,5 +26,8 @@
     "eslint-plugin-standard": "^2.1.1",
     "jest": "^20.0.4",
     "throttled-request": "^0.1.1"
+  },
+  "jest": {
+    "verbose": true
   }
 }

@@ -4,6 +4,7 @@ import Equipament from './equipament/Equipament'
 import Characteristics from './characteristics/Characteristics'
 import Battle from './battle/Battle'
 import Status from './status/Status'
+import Wallet from './wallet/Wallet'
 import Name from './identity/Name'
 
 class Character {
@@ -15,17 +16,11 @@ class Character {
     this.characteristics = new Characteristics({characteristics})
     this.battle = new Battle({character: this})
     this.status = new Status({character: this})
-    Object.assign(this, {name, experience, items, currencies})
+    this.wallet = new Wallet({currencies})
+    Object.assign(this, {name, experience, items})
   }
-  earnCurrency (currency) {
-    return new Promise((resolve, reject) => {
-      if (this.currencies[currency.name]) {
-        this.currencies[currency.name] += currency.value
-      } else {
-        this.currencies[currency.name] = currency.value
-      }
-      resolve(this.currencies[currency.name])
-    })
+  interact (thing) {
+    return thing.interaction(this)
   }
 }
 

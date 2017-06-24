@@ -39,6 +39,9 @@ class Inventory {
       return 0
     }
   }
+  hasItem (item) {
+    return this.items.filter(_item => _item.name === item.name).length > 0
+  }
 }
 
 export default Inventory

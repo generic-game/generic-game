@@ -3,6 +3,17 @@ import GenericGame from '../../index'
 const gg = new GenericGame()
 const error = (err) => console.error(err)
 const factory = {
+  goldCurrency () {
+    return new gg.class.Currency({
+      name: 'Gold',
+      symbol: 'G'
+    })
+  },
+  shop () {
+    return new gg.class.Shop({
+      name: 'Generic shop'
+    })
+  },
   hero () {
     return new gg.class.Character({
       name: 'Generic hero'
