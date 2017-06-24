@@ -1,5 +1,5 @@
 class Name {
-  constructor ({name, type}) {
+  constructor ({name = '', type = ''}) {
     Object.assign(this, {name, type})
   }
   getName () {

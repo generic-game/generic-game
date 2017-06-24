@@ -1,12 +1,12 @@
 {
   "name": "generic-game",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "",
   "main": "index.js",
   "scripts": {
     "dev": "nodemon example/index.js --exec babel-node --watch example --watch src",
-    "devtest": "npm run test -- --watch src",
-    "test": "jest --silent"
+    "test": "jest --silent",
+    "wt": "npm run test -- --watch src"
   },
   "author": "Filipe Costa Meneses <flcmeneses@gmail.com> (http://filipemeneses.com.br/)",
   "license": "ISC",
