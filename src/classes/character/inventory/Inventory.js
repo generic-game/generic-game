@@ -1,4 +1,4 @@
-import Item from './Item'
+import { Item } from '../../general'
 
 class Inventory {
   constructor ({items = [], capacity = 1}) {

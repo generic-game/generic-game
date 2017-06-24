@@ -1,5 +1,5 @@
-import Characteristic from './Characteristic'
-import { characteristic, character } from '../constants'
+import { Characteristic } from '../../general'
+import { characteristic, character } from '../../../constants'
 
 class Characteristics {
   constructor ({characteristics}) {

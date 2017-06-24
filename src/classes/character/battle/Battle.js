@@ -1,4 +1,4 @@
-import { characteristic } from '../constants'
+import { characteristic } from '../../../constants'
 
 class Battle {
   constructor ({character}) {

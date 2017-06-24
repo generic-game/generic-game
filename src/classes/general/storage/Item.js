@@ -1,4 +1,4 @@
-import { item } from '../constants'
+import { item } from '../../../constants'
 import SlotType from './SlotType'
 
 class Item {

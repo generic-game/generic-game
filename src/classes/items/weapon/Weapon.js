@@ -1,4 +1,4 @@
-import Item from './Item'
+import { Item } from '../../general'
 
 class Weapon extends Item {
   constructor ({name, type, slotType, attacks, floorDamage = 0}) {

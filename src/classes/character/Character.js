@@ -1,12 +1,14 @@
 import EventEmmiter from 'events'
-import Inventory from './Inventory'
-import Equipament from './Equipament'
-import Characteristics from './Characteristics'
-import Battle from './Battle'
-import Status from './Status'
+import Inventory from './inventory/Inventory'
+import Equipament from './equipament/Equipament'
+import Characteristics from './characteristics/Characteristics'
+import Battle from './battle/Battle'
+import Status from './status/Status'
+import Name from './identity/Name'
 
 class Character {
-  constructor ({name, experience = 0, items = [], equipaments = [], currencies = [], characteristics = []}) {
+  constructor ({type, name, experience = 0, items = [], equipaments = [], currencies = [], characteristics = []}) {
+    this.name = new Name({type, name})
     this.events = new EventEmmiter()
     this.inventory = new Inventory(items)
     this.equipament = new Equipament({items: equipaments})

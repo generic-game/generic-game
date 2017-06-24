@@ -1,5 +1,5 @@
-import Slot from './Slot'
-import Weapon from './Weapon'
+import { Slot } from '../../general'
+import { Weapon } from '../../items'
 
 class Equipament {
   constructor ({items = [], slots = []}) {

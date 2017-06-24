@@ -1,4 +1,4 @@
-import Item from './Item'
+import { Item } from '../../general'
 
 class Vest extends Item {
   constructor ({name, type, slotType, effects}) {
