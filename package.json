@@ -8,7 +8,7 @@
     "devtest": "npm run test -- --watch src",
     "test": "jest --silent"
   },
-  "author": "",
+  "author": "Filipe Costa Meneses <flcmeneses@gmail.com> (http://filipemeneses.com.br/)",
   "license": "ISC",
   "dependencies": {
     "nodemon": "^1.11.0",
