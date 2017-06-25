@@ -1,8 +1,8 @@
 import { Item } from '../../general'
 
 class Weapon extends Item {
-  constructor ({name, type, slotType, attacks, floorDamage = 0}) {
-    super({name, type, slotType})
+  constructor ({name, type, weight, slotType, attacks, floorDamage = 0}) {
+    super({name, type, weight, slotType})
     Object.assign(this, {attacks, floorDamage})
   }
   getAttacks () {
