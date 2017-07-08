@@ -6,6 +6,7 @@ import Battle from './battle/Battle'
 import Status from './status/Status'
 import Wallet from './wallet/Wallet'
 import Name from './identity/Name'
+import Experience from './experience/Experience'
 
 class Character {
   constructor ({type, name, experience = 0, items = [], equipaments = [], currencies = [], characteristics = []}) {
@@ -17,10 +18,14 @@ class Character {
     this.battle = new Battle({character: this})
     this.status = new Status({character: this})
     this.wallet = new Wallet({currencies})
-    Object.assign(this, {name, experience, items})
+    this.experience = new Experience({})
+    Object.assign(this, {name, items})
   }
   interact (thing) {
     return thing.interaction(this)
+  }
+  getLevel () {
+    return this.experience.computeLevel()
   }
 }
 

@@ -33,3 +33,17 @@ describe('currency', () => {
     })
   })
 })
+
+describe('levels', () => {
+  test('should gain experience', () => {
+    return hero.experience.gain(9).then(success => {
+      expect(success).toBe(true)
+    }).catch(error)
+  })
+  test('should level up', () => {
+    return hero.experience.gain(1).then(success => {
+      expect(success).toBe(true)
+      expect(hero.getLevel()).toBe(1)
+    }).catch(error)
+  })
+})
