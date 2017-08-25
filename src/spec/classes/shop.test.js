@@ -25,17 +25,17 @@ describe('shop', () => {
   test('should be able to sell item', () => {
     hero.inventory.carry(sword).then(() => {
       hero.interact(shop).sell(sword).then((currency) => {
-        expect(hero.wallet.get(goldCurrency).value).toEqual(1000)
+        expect(hero.bank.get(goldCurrency).value).toEqual(1000)
       })
     })
   })
   test('should be able to buy item', () => {
     let shopItem = shop.getItems()[0]
     goldCurrency.value = 1
-    hero.wallet.earn(goldCurrency).then(() => {
+    hero.bank.earn(goldCurrency).then(() => {
       hero.interact(shop).buy(shopItem).then(() => {
         expect(hero.inventory.hasItem(shopItem.item)).toEqual(true)
-        expect(hero.wallet.get(goldCurrency).value).toEqual(1)
+        expect(hero.bank.get(goldCurrency).value).toEqual(1)
       })
     })
   })

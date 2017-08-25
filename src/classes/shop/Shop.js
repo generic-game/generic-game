@@ -50,7 +50,7 @@ class Shop {
       return new Promise((resolve, reject) => {
         if (!character.inventory.hasItem(item)) return reject(new Error('Character must have the item to sell'))
         character.inventory.drop(item)
-        character.wallet.earn(this._getItemPrice({item}))
+        character.bank.earn(this._getItemPrice({item}))
         resolve(true)
       })
     }
@@ -59,7 +59,7 @@ class Shop {
     return (shopItem) => {
       return new Promise((resolve, reject) => {
         if (this.items.indexOf(shopItem) === -1) return reject(new Error('Item not available in shop'))
-        character.wallet.lose(this._getItemPrice()).then(() => {
+        character.bank.lose(this._getItemPrice()).then(() => {
           this.removeItem(shopItem)
           return character.inventory.carry(shopItem.item)
         }).then(resolve).catch(reject)

@@ -15,6 +15,8 @@ describe('battle', () => {
   })
   describe('battle events', () => {
     villian = factory.villian()
+    villian.equipament.addSlot({type: 'handheld'})
+    villian.equipament.equip(factory.sword())
 
     test('should trigger events', () => {
       villian.events.on('battle:[before]attack', ({ attack }) => {
@@ -49,6 +51,10 @@ describe('battle', () => {
     })
   })
   test('should battle until death', () => {
+    villian = factory.villian()
+    villian.equipament.addSlot({type: 'handheld'})
+    villian.equipament.equip(factory.dagger())
+
     return hero.battle.conflict(villian).then(() => {
       expect(villian.battle.isAlive()).toBe(false)
     }).catch(error)

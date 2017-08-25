@@ -4,7 +4,7 @@ import Equipament from './equipament/Equipament'
 import Characteristics from './characteristics/Characteristics'
 import Battle from './battle/Battle'
 import Status from './status/Status'
-import Wallet from './wallet/Wallet'
+import Bank from './bank/Bank'
 import Name from './identity/Name'
 import Experience from './experience/Experience'
 
@@ -17,7 +17,7 @@ class Character {
     this.characteristics = new Characteristics({characteristics})
     this.battle = new Battle({character: this})
     this.status = new Status({character: this})
-    this.wallet = new Wallet({currencies})
+    this.bank = new Bank({currencies})
     this.experience = new Experience({})
     Object.assign(this, {name, items})
   }

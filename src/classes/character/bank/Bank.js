@@ -1,4 +1,4 @@
-class Wallet {
+class Bank {
   constructor ({currencies}) {
     Object.assign(this, {currencies})
   }
@@ -10,24 +10,26 @@ class Wallet {
       if (this.currencies[currency.name]) {
         this.currencies[currency.name].value -= Math.abs(currency.value)
       } else {
-        return reject(new Error('No currency available'))
+        if (!currency.value) currency.value = 0
+        currency.value = -Math.abs(currency.value)
+        this.currencies[currency.name] = Object.assign({}, currency)
       }
       resolve(this.currencies[currency.name])
     })
   }
-  get (currency) {
-    return currency ? (this.currencies[currency.name] || {}) : {}
+  get ({name}) {
+    return name ? (this.currencies[name] || {}) : {}
   }
   earn (currency) {
     return new Promise((resolve, reject) => {
       if (this.currencies[currency.name]) {
         this.currencies[currency.name].value += Math.abs(currency.value)
       } else {
-        this.currencies[currency.name] = currency
+        this.currencies[currency.name] = Object.assign({}, currency)
       }
       resolve(this.currencies[currency.name])
     })
   }
 }
 
-export default Wallet
+export default Bank

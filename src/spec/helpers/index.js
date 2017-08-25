@@ -43,7 +43,7 @@ const factory = {
       type: gg.const.item.EQUIPABLE,
       slotType: {name: 'handheld'},
       attacks: [
-        new gg.class.Attack({damage: 1, delay: 1})
+        new gg.class.Attack({damage: 1, delay: 100})
       ]
     })
   },
