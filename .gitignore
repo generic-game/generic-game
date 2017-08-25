@@ -60,3 +60,5 @@ typings/
 .env
 
 diagram
+lcov.info
+lcov-report

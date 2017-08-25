@@ -2,7 +2,10 @@
 
 # generic-game
 
-A generic game composed of usual RPG game components.
+[![Travis branch](https://img.shields.io/travis/filipemeneses/generic-game/master.svg)]()
+https://img.shields.io/codeclimate/github/filipemeneses/generic-game.svg
+[![Code Climate](https://img.shields.io/codeclimate/github/filipemeneses/generic-game.svg)]()
+[![Code Climate](https://img.shields.io/codeclimate/coverage/github/filipemeneses/generic-game.svg)]()
 
 ### Usage
 

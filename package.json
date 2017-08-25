@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon example/index.js --exec babel-node --watch example --watch src",
-    "test": "jest --silent",
+    "test": "jest --coverage --silent",
     "wt": "npm run test -- --watch src"
   },
   "author": "Filipe Costa Meneses <flcmeneses@gmail.com> (http://filipemeneses.com.br/)",
@@ -28,6 +28,8 @@
     "throttled-request": "^0.1.1"
   },
   "jest": {
-    "verbose": true
+    "verbose": true,
+    "coverageDirectory": ".",
+    "coverageReporters": ["lcov"]
   }
 }
