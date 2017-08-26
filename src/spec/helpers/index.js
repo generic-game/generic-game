@@ -19,7 +19,8 @@ const factory = {
   },
   hero () {
     return new gg.class.Character({
-      name: 'Generic hero'
+      name: 'Generic hero',
+      type: 'Hero'
     })
   },
   villian () {
@@ -34,6 +35,9 @@ const factory = {
       slotType: {name: 'handheld'},
       attacks: [
         new gg.class.Attack({damage: 10, delay: 100})
+      ],
+      effects: [
+        new gg.class.Effect({characteristic: 'defense', amount: -1})
       ]
     })
   },

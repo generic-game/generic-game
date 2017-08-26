@@ -1,2 +1,6 @@
 export Character from './Character'
+export Bank from './bank/Bank'
+export Equipament from './equipament/Equipament'
+export Characteristics from './characteristics/Characteristics'
+export Inventory from './inventory/Inventory'
 export Experience from './experience/Experience'

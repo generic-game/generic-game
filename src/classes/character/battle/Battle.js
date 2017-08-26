@@ -16,23 +16,15 @@ class Battle {
   }
   conflict (character) {
     return new Promise((resolve, reject) => {
-      const noWeapons = (result) => {
-        if (typeof result === 'boolean') {
-          return false
-        } else {
-          console.error(result)
-          return false
-        }
-      }
       const selfReact = () => {
         return this.character.battle.attack(character).then(enemyIsAlive => {
           return this._react(this.character, enemyIsAlive, selfReact)
-        }).catch(noWeapons)
+        })
       }
       const characterReact = () => {
         return character.battle.attack(this.character).then(enemyIsAlive => {
           this._react(character, enemyIsAlive, characterReact)
-        }).catch(noWeapons)
+        })
       }
 
       Promise.all([selfReact(), characterReact()]).then(resolve)

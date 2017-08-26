@@ -2,12 +2,12 @@ import { Characteristic } from '../../general'
 import { characteristic, character } from '../../../constants'
 
 class Characteristics {
-  constructor ({characteristics}) {
-    this.characteristics = []
-    this._checkDefaultCharacteristics(this._getValidCharacteristics(characteristics))
-    Object.assign(this)
+  constructor ({characteristics = []}) {
+    if (characteristics.length && !this._isValidCharacteristics(characteristics)) throw new Error('Invalid characteristics')
+    Object.assign(this, {characteristics})
+    this._checkDefaultCharacteristics()
   }
-  _checkDefaultCharacteristics (characteristics) {
+  _checkDefaultCharacteristics () {
     let defaults = [
       [characteristic.LIFE, character.LIFE],
       [characteristic.DEFENSE, character.DEFENSE]
@@ -36,16 +36,8 @@ class Characteristics {
       this.characteristics.push(new Characteristic({name, value}))
     }
   }
-  _getValidCharacteristics (characteristics) {
-    let valid = []
-    if (characteristics.length) {
-      characteristics.forEach(characteristic => {
-        if (characteristic instanceof Characteristic) {
-          valid.push(characteristic)
-        }
-      })
-    }
-    return valid
+  _isValidCharacteristics (characteristics) {
+    return characteristics.filter(characteristic => !(characteristic instanceof Characteristic)).length === 0
   }
   getValueByName (name) {
     return this.getByName(name).reduce((total, characteristic) => {

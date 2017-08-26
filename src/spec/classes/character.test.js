@@ -2,9 +2,9 @@ import { error, factory } from '../helpers'
 
 let hero = factory.hero()
 
-describe('generic hero', () => {
+describe('creating', () => {
   test('should have a name', () => {
-    expect(hero.name).toBe('Generic hero')
+    expect(hero.identity.getName()).toBe('Hero: Generic hero')
   })
 })
 

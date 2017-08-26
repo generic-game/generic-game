@@ -2,6 +2,7 @@ import { Item } from '../../general'
 
 class Inventory {
   constructor ({items = [], capacity = 1}) {
+    if (items.length && !this._isValidItems(items)) throw new Error('Invalid items')
     Object.assign(this, {items, capacity})
   }
   carry (item) {
@@ -41,6 +42,9 @@ class Inventory {
   }
   hasItem (item) {
     return this.items.filter(_item => _item.name === item.name).length > 0
+  }
+  _isValidItems (items) {
+    return items.filter(item => !(item instanceof Item)).length === 0
   }
 }
 

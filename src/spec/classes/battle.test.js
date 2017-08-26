@@ -13,6 +13,11 @@ describe('battle', () => {
       expect(status.life - status.damageTaken).toBe(90)
     }).catch(error)
   })
+  test('attacker should equip weapon to attack', () => {
+    let villian = factory.villian()
+    return expect(villian.battle.attack(hero)).rejects.toEqual(new Error(`Character can't attack without a weapon`))
+  })
+
   describe('battle events', () => {
     villian = factory.villian()
     villian.equipament.addSlot({type: 'handheld'})

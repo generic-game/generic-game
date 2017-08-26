@@ -1,4 +1,4 @@
-import { error, factory } from '../helpers'
+import { gg, error, factory } from '../helpers'
 
 let hero = factory.hero()
 
@@ -7,6 +7,17 @@ let dagger = factory.dagger()
 let helmet = factory.helmet()
 
 describe('equipament', () => {
+  test('should initialize with valid slots', () => {
+    let equipament = new gg.class.Equipament({
+      slots: [
+        new gg.class.Slot({type: 'Valid type'})
+      ]
+    })
+    expect(equipament.slots.length).toBe(1)
+  })
+  test('should\'nt initialize with invalid slots', () => {
+    expect(() => new gg.class.Equipament({slots: [{type: {name: 'Dummy name'}}]})).toThrow(new Error('Invalid slots'))
+  })
   test('should not unable to equip in unexistent slots', () => {
     expect(hero.equipament.equip(dagger)).rejects.toEqual(new Error('No available slot'))
   })

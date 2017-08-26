@@ -12,4 +12,9 @@ describe('experience', () => {
       expect(experience.computeLevel()).toBe(1)
     })
   })
+  test('should lose experience', () => {
+    return experience.lose(1000).then(success => {
+      expect(experience.computeLevel()).toBe(0)
+    })
+  })
 })
