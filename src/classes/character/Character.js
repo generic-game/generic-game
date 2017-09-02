@@ -7,6 +7,7 @@ import Status from './status/Status'
 import Bank from './bank/Bank'
 import Identity from './identity/Identity'
 import Experience from './experience/Experience'
+import Quests from './quests/Quests'
 
 class Character {
   constructor ({type, name, experience = 0, items = [], equipaments = [], currencies = [], characteristics = []}) {
@@ -19,6 +20,7 @@ class Character {
     this.status = new Status({character: this})
     this.bank = new Bank({currencies})
     this.experience = new Experience({})
+    this.quests = new Quests()
   }
   interact (thing) {
     return thing.interaction(this)

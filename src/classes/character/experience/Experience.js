@@ -1,10 +1,17 @@
 class Experience {
-  constructor ({initialExperience}) {
-    this.value = initialExperience || 0
+  constructor ({value = 0}) {
+    this.value = value
     this.algorithm = (value) => Math.floor(value / 10)
   }
+  getExperience () {
+    return this.value
+  }
   gain (amount) {
-    this.value += amount
+    if (amount instanceof Experience) {
+      this.value += amount.getExperience()
+    } else if (typeof amount === 'number') {
+      this.value += amount
+    }
     return Promise.resolve(true)
   }
   lose (amount) {

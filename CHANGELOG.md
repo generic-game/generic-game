@@ -1,3 +1,7 @@
+### 0.1.0 (2017-09-02)
+
+- Adding quest feature
+
 #### 0.0.12 (2017-08-25)
 
 - Removing diagrams and unnecessary example
