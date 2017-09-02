@@ -34,7 +34,7 @@ class Bank {
       if (this.currencies[name]) {
         this.currencies[name].value += Math.abs(currency.value)
       } else {
-        this.currencies[name] = Object.assign({}, currency)
+        this.currencies[name] = Object.assign(Object.create(currency), currency)
       }
       resolve(this.currencies[name])
     })

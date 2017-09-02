@@ -1,21 +1,19 @@
 {
   "name": "generic-game",
-  "version": "0.0.12",
+  "version": "0.1.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon example/index.js --exec babel-node --watch example --watch src",
     "test": "jest --coverage --silent",
-    "wt": "npm run test -- --watch src"
+    "build": "./node_modules/.bin/babel src --presets babel-preset-es2015 --plugins add-module-exports --out-dir dist",
+    "prepublish": "npm run build"
   },
   "author": "Filipe Costa Meneses <flcmeneses@gmail.com> (http://filipemeneses.com.br/)",
   "license": "ISC",
-  "dependencies": {
-    "nodemon": "^1.11.0",
-    "babel-cli": "^6.24.0"
-  },
   "devDependencies": {
+    "babel-cli": "^6.24.0",
     "babel-eslint": "^7.1.1",
+    "babel-plugin-add-module-exports": "^0.2.1",
     "babel-preset-env": "^1.4.0",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-stage-0": "^6.22.0",
@@ -30,6 +28,8 @@
   "jest": {
     "verbose": true,
     "coverageDirectory": ".",
-    "coverageReporters": ["lcov"]
+    "coverageReporters": [
+      "lcov"
+    ]
   }
 }
