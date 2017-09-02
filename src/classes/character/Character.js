@@ -10,10 +10,10 @@ import Experience from './experience/Experience'
 import Quests from './quests/Quests'
 
 class Character {
-  constructor ({type, name, experience = 0, items = [], equipaments = [], currencies = [], characteristics = []}) {
+  constructor ({type, name, experience = 0, items = [], equipaments = [], currencies = [], characteristics = [], inventory = {}}) {
     this.identity = new Identity({type, name})
     this.events = new EventEmmiter()
-    this.inventory = new Inventory(items)
+    this.inventory = new Inventory(inventory)
     this.equipament = new Equipament({items: equipaments})
     this.characteristics = new Characteristics({characteristics})
     this.battle = new Battle({character: this})

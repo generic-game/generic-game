@@ -7,10 +7,11 @@ class Shop {
     items.forEach(this.addItem)
     Object.assign(this, {name})
   }
-  addItem (item) {
+  addItem ({item, price}) {
+    if (!(price instanceof Currency)) throw new Error('Price must be a Currency instance')
     if (!(item instanceof ShopItem)) {
       if (!this._getItem(item)) {
-        item = new ShopItem({item})
+        item = new ShopItem({item, price})
         this.shopItems.push(item)
       } else {
         this._getItem(item).addUnit()
@@ -58,7 +59,7 @@ class Shop {
       return new Promise((resolve, reject) => {
         if (!character.inventory.hasItem(item)) return reject(new Error('Character must have the item to sell'))
         character.inventory.drop(item)
-        character.bank.earn(this._getItemPrice({item}))
+        character.bank.earn(this._getItemPrice(item))
         resolve(true)
       })
     }
@@ -67,7 +68,7 @@ class Shop {
     return (shopItem) => {
       return new Promise((resolve, reject) => {
         if (this.shopItems.indexOf(shopItem) === -1) return reject(new Error('Item not available in shop'))
-        let price = this._getItemPrice()
+        let price = shopItem.getPrice()
         let characterCurrency = character.bank.get({name: price.name})
         if (characterCurrency.value >= price.value) {
           character.bank.lose(price).then(() => {

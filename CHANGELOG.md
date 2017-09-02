@@ -1,3 +1,8 @@
+#### 0.1.1 (2017-09-02)
+
+- `ShopItem` now accepts `Currency` as price
+- `Currency` has a `setValue` and only accepts number type
+
 ### 0.1.0 (2017-09-02)
 
 - Adding quest feature

@@ -43,6 +43,10 @@ class Inventory {
   hasItem (item) {
     return this.items.filter(_item => _item.name === item.name).length > 0
   }
+  increaseCapacity (amount) {
+    if (typeof amount !== 'number') throw new Error('Inventory increase capacity argument must be a number')
+    this.capacity += amount
+  }
   _isValidItems (items) {
     return items.filter(item => !(item instanceof Item)).length === 0
   }
