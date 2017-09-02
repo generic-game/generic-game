@@ -1,4 +1,7 @@
-JavaScript: true
+ratings:
+  paths:
+  - src/**
+  - "**.js"
 engines:
   eslint:
     enabled: true
