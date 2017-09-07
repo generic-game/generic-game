@@ -1,4 +1,4 @@
-import { gg, factory, error } from '../helpers'
+import { gg, factory } from '../helpers'
 
 let shop = factory.shop()
 let hero = factory.hero()
@@ -53,8 +53,8 @@ describe('shop', () => {
     return hero.inventory.carry(heroSword).then(() => {
       return hero.interact(shop).sell(heroSword).then((currency) => {
         expect(hero.bank.get(goldCurrency).value).toEqual(1000)
-      }).catch(error)
-    }).catch(error)
+      })
+    })
   })
   test(`should'nt be able to sell item which doesn't posses`, () => {
     let heroSword = factory.sword()

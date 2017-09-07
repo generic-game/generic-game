@@ -1,7 +1,6 @@
 ratings:
   paths:
-  - src/**
-  - "**.js"
+  - src/**/*.js
 engines:
   eslint:
     enabled: true

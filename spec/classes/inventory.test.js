@@ -1,4 +1,4 @@
-import { gg, error, factory } from '../helpers'
+import { gg, factory } from '../helpers'
 
 let hero = factory.hero()
 let sword = factory.sword()
@@ -20,7 +20,7 @@ describe('inventory', () => {
     return hero.inventory.carry(sword).then(() => {
       expect(hero.inventory.items.length).toBe(1)
       expect(hero.inventory.items[0].name).toBe('Great sword')
-    }).catch(error)
+    })
   })
   test('should\'nt be able to carry an invalid item', () => {
     return expect(hero.inventory.carry({name: 'Sword', attack: 100})).rejects.toEqual(new Error(`Not an Item instance`))
@@ -34,8 +34,8 @@ describe('inventory', () => {
       return hero.inventory.carry(helmet).then(() => {
         expect(hero.inventory.items.length).toBe(1)
         expect(hero.inventory.items[0].name).toBe('Armet')
-      }).catch(error)
-    }).catch(error)
+      })
+    })
   })
   test('should\'nt be able to drop an invalid item', () => {
     return expect(hero.inventory.drop({name: 'Sword', attack: 100})).rejects.toEqual(new Error(`Not an Item instance`))

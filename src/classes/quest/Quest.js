@@ -83,24 +83,16 @@ class Quest {
   _droper (character) {
     return () => {
       return new Promise((resolve, reject) => {
-        try {
-          character.quests.removeQuest(this)
-          resolve()
-        } catch (e) {
-          reject(e)
-        }
+        character.quests.removeQuest(this)
+        resolve()
       })
     }
   }
   _joiner (character) {
     return () => {
       return new Promise((resolve, reject) => {
-        try {
-          character.quests.addQuest(this)
-          resolve()
-        } catch (e) {
-          reject(e)
-        }
+        character.quests.addQuest(this)
+        resolve()
       })
     }
   }

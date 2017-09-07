@@ -2,9 +2,9 @@
 
 # generic-game
 
-[![Travis branch](https://img.shields.io/travis/filipemeneses/generic-game/master.svg)]()
-[![Code Climate](https://img.shields.io/codeclimate/github/filipemeneses/generic-game.svg)]()
-[![Code Climate](https://img.shields.io/codeclimate/coverage/github/filipemeneses/generic-game.svg)]()
+[![Travis branch](https://img.shields.io/travis/generic-game/generic-game/master.svg)]()
+[![Code Climate](https://img.shields.io/codeclimate/github/generic-game/generic-game.svg)]()
+[![Code Climate](https://img.shields.io/codeclimate/coverage/github/generic-game/generic-game.svg)]()
 [![npm](https://img.shields.io/npm/v/generic-game.svg)]()
 [![npm](https://img.shields.io/npm/dw/generic-game.svg)]()
 [![npm](https://img.shields.io/npm/dm/generic-game.svg)]()

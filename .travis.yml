@@ -3,7 +3,7 @@ node_js:
   - 7.0.0
 addons:
   code_climate:
-    repo_token: ecf05392906fe042c9cf5a1adc07eb252fe0ee2bb0fb0ea03d5cfdb686c45a98
+    repo_token: d6432faaacef506beb9220b6602f7b507e70d22f8c3581e5d9a729235f93e785
 after_success:
   - npm install -g codeclimate-test-reporter
   - codeclimate-test-reporter < lcov.info

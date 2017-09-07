@@ -1,4 +1,4 @@
-import { factory, error } from '../helpers'
+import { factory } from '../helpers'
 
 let hero = factory.hero()
 hero.equipament.addSlot({type: 'handheld'})
@@ -11,7 +11,7 @@ describe('battle', () => {
     return hero.battle.attack(villian).then(() => {
       let status = villian.status.get()
       expect(status.life - status.damageTaken).toBe(90)
-    }).catch(error)
+    })
   })
   test('attacker should equip weapon to attack', () => {
     let villian = factory.villian()
@@ -52,7 +52,7 @@ describe('battle', () => {
       })
       return hero.battle.attack(villian).then(() => {
         return villian.battle.attack(hero)
-      }).catch(error)
+      })
     })
   })
   test('should battle until death', () => {
@@ -62,6 +62,6 @@ describe('battle', () => {
 
     return hero.battle.conflict(villian).then(() => {
       expect(villian.battle.isAlive()).toBe(false)
-    }).catch(error)
+    })
   })
 })
