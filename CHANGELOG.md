@@ -1,3 +1,7 @@
+#### 0.1.3 (2017-09-07)
+
+- Updating NPM package
+
 #### 0.1.2 (2017-09-07)
 
 - Removing depreciated diagram and updating main script

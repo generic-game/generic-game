@@ -58,4 +58,4 @@ hero.battle.conflict(mob).then(() => {
 
 ### Documentation
 
-Documentation is [available here](https://github.com/filipemeneses/generic-game/wiki).
+Documentation is [available here](https://github.com/generic-game/generic-game/wiki).

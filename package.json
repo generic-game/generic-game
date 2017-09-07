@@ -1,14 +1,26 @@
 {
   "name": "generic-game",
-  "version": "0.1.2",
-  "description": "",
-  "main": "./dist/index.js",
+  "version": "0.1.3",
+  "description": "A generic game composed of usual RPG game components",
+  "homepage": "http://genericgame.io",
+  "main": "dist/index.js",
+  "keywords": [
+    "engine",
+    "rpg",
+    "nodejs",
+    "browser",
+    "mud"
+  ],
   "scripts": {
     "test": "jest --coverage --silent",
     "build": "./node_modules/.bin/babel src --presets babel-preset-es2015 --plugins add-module-exports --out-dir dist",
     "prepublish": "npm run build"
   },
   "author": "Filipe Costa Meneses <flcmeneses@gmail.com> (http://filipemeneses.com.br/)",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/generic-game/generic-game.git"
+  },
   "license": "ISC",
   "devDependencies": {
     "babel-cli": "^6.24.0",
