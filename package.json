@@ -1,6 +1,6 @@
 {
   "name": "generic-game",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "",
   "main": "./dist/index.js",
   "scripts": {
@@ -27,6 +27,7 @@
   },
   "jest": {
     "verbose": true,
+    "roots": ["./spec"],
     "coverageDirectory": ".",
     "coverageReporters": [
       "lcov"

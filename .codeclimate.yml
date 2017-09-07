@@ -11,4 +11,5 @@ engines:
       languages:
       - javascript:
 exclude_paths:
-- "src/spec/**/*"
+- "spec/**/*"
+- "dist/**/*"

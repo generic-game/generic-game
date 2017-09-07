@@ -1,4 +1,4 @@
-import GenericGame from '../../index'
+import GenericGame from '../../src/index'
 
 const gg = new GenericGame()
 const error = (err) => console.error(err)
