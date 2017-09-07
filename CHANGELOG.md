@@ -1,3 +1,7 @@
+#### 0.1.2 (2017-09-07)
+
+- Removing depreciated diagram and updating main script
+
 #### 0.1.1 (2017-09-02)
 
 - `ShopItem` now accepts `Currency` as price

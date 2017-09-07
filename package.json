@@ -2,7 +2,7 @@
   "name": "generic-game",
   "version": "0.1.1",
   "description": "",
-  "main": "index.js",
+  "main": "./dist/index.js",
   "scripts": {
     "test": "jest --coverage --silent",
     "build": "./node_modules/.bin/babel src --presets babel-preset-es2015 --plugins add-module-exports --out-dir dist",
