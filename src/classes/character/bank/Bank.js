@@ -1,42 +1,42 @@
 class Bank {
-  constructor ({currencies}) {
+  constructor ({currencies = []}) {
     if (Array.isArray(currencies)) {
       currencies = currencies.reduce((obj, currency) => {
         obj[this._parseName(currency.name)] = currency
         return obj
       }, {})
     }
-    Object.assign(this, {currencies})
+    this._currencies = currencies
   }
   getCurrencies () {
-    return this.currencies
+    return this._currencies
   }
   lose (currency) {
     return new Promise((resolve, reject) => {
       currency = Object.assign({}, currency)
       let name = this._parseName(currency.name)
-      if (this.currencies[name]) {
-        this.currencies[name].value -= Math.abs(currency.value)
+      if (this._currencies[name]) {
+        this._currencies[name].value -= Math.abs(currency.value)
       } else {
         currency.value = -Math.abs(currency.value)
-        this.currencies[name] = currency
+        this._currencies[name] = currency
       }
-      resolve(this.currencies[name])
+      resolve(this._currencies[name])
     })
   }
   get ({name}) {
     name = this._parseName(name)
-    return name ? (this.currencies[name] || {}) : {}
+    return name ? (this._currencies[name] || {}) : {}
   }
   earn (currency) {
     return new Promise((resolve, reject) => {
       let name = this._parseName(currency.name)
-      if (this.currencies[name]) {
-        this.currencies[name].value += Math.abs(currency.value)
+      if (this._currencies[name]) {
+        this._currencies[name].value += Math.abs(currency.value)
       } else {
-        this.currencies[name] = Object.assign(Object.create(currency), currency)
+        this._currencies[name] = Object.assign(Object.create(currency), currency)
       }
-      resolve(this.currencies[name])
+      resolve(this._currencies[name])
     })
   }
   _parseName (name) {

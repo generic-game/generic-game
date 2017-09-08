@@ -1,3 +1,10 @@
+#### 0.1.4 (2017-09-08)
+
+- `Character` now instanciates `Identity`, `Equipament` and `Bank` using the
+parametters with names accordingly it's names istead several parametters for
+each class. Ex.: before was `new gg.class.Character({name, type})`, now is
+`new gg.class.Character({identity})`.
+
 #### 0.1.3 (2017-09-07)
 
 - Updating NPM package

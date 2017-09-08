@@ -4,7 +4,9 @@ let hero = factory.hero()
 
 describe('creating', () => {
   test('should have a name', () => {
-    expect(hero.identity.getName()).toBe('Hero: Generic hero')
+    expect(hero.identity.getName()).toBe('Generic hero')
+    expect(hero.identity.getType()).toBe('Hero')
+    expect(hero.identity.getFullName()).toBe('Hero: Generic hero')
   })
 })
 

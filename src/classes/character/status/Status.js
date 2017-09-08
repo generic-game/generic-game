@@ -2,11 +2,11 @@ class Status {
   constructor ({character}) {
     Object.assign(this, {character})
   }
-  get () {
+  get (name) {
     let status = {}
     this._addToStatus(status, this.character.equipament.getModifiers())
     this._addToStatus(status, this.character.characteristics.getAll())
-    return status
+    return name ? status[name] || 0 : status
   }
   _addToStatus (status, characteristics) {
     characteristics.forEach(characteristic => {

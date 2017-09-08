@@ -18,13 +18,17 @@ const factory = {
   },
   hero () {
     return new gg.class.Character({
-      name: 'Generic hero',
-      type: 'Hero'
+      identity: {
+        name: 'Generic hero',
+        type: 'Hero'
+      }
     })
   },
   villian () {
     return new gg.class.Character({
-      name: 'Generic villain'
+      identity: {
+        name: 'Generic villain'
+      }
     })
   },
   sword () {

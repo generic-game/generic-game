@@ -1,9 +1,16 @@
 class Identity {
   constructor ({name = '', type = ''}) {
-    Object.assign(this, {name, type})
+    this._name = name
+    this._type = type
   }
   getName () {
-    return this.type ? `${this.type}: ${this.name}` : this.name
+    return this._name
+  }
+  getFullName () {
+    return this._type ? `${this._type}: ${this._name}` : this.getName()
+  }
+  getType () {
+    return this._type
   }
 }
 
