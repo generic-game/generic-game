@@ -1,6 +1,12 @@
 class SlotType {
   constructor ({name}) {
-    Object.assign(this, {name})
+    this._name = name
+  }
+  setName (name) {
+    this._name = name
+  }
+  getName () {
+    return this._name
   }
 }
 

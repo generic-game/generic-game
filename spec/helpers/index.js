@@ -1,19 +1,38 @@
 import GenericGame from '../../src/index'
+import { characteristic } from 'constants'
 
 const gg = new GenericGame()
 const factory = {
   experience () {
     return new gg.class.Experience({})
   },
-  goldCurrency () {
-    return new gg.class.Currency({
+  effect ({characteristic, amount = 1}) {
+    return new gg.class.Effect({characteristic, amount})
+  },
+  health () {
+    return new gg.class.Characteristic({
+      name: characteristic.LIFE,
+      value: 1
+    })
+  },
+  goldCurrency (value = null) {
+    let gold = {
       name: 'Gold',
       symbol: 'G'
-    })
+    }
+    if (value != null) gold.value = value
+    return new gg.class.Currency(gold)
   },
   shop () {
     return new gg.class.Shop({
       name: 'Generic shop'
+    })
+  },
+  shopItem (item, value = null) {
+    let gold = this.goldCurrency(value)
+    return new gg.class.ShopItem({
+      item,
+      price: gold
     })
   },
   hero () {

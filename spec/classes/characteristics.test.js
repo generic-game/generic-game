@@ -9,7 +9,7 @@ describe('characteristics', () => {
         new gg.class.Characteristic({name: 'MyCharacteristic', value: 1})
       ]
     })
-    expect(characteristics.characteristics.length).toBe(3) // MyCharacteristic characteristic and life & defense defaults
+    expect(characteristics.getCharacteristics().length).toBe(3) // MyCharacteristic characteristic and life & defense defaults
   })
   test('should\'nt initialize with invalid characteristics', () => {
     expect(() => new gg.class.Characteristics({characteristics: [{name: 'Dummy characteristic', value: 1}]})).toThrow(new Error('Invalid characteristics'))

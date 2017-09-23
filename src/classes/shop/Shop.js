@@ -1,35 +1,43 @@
 import { Currency } from '../general'
 import ShopItem from './ShopItem'
+import { clone } from 'helpers'
 
 class Shop {
   constructor ({name, items = []}) {
-    this.shopItems = []
+    this._shopItems = []
+    this._name = name
     items.forEach(this.addItem)
-    Object.assign(this, {name})
+  }
+  getName () {
+    return this._name
+  }
+  setName (name) {
+    this._name = name
   }
   addItem ({item, price}) {
     if (!(price instanceof Currency)) throw new Error('Price must be a Currency instance')
     if (!(item instanceof ShopItem)) {
+      item = clone(item)
       if (!this._getItem(item)) {
         item = new ShopItem({item, price})
-        this.shopItems.push(item)
+        this._shopItems.push(item)
       } else {
         this._getItem(item).addUnit()
       }
     }
   }
-  getItems () {
-    return this.shopItems
+  getShopItems () {
+    return this._shopItems
   }
   removeItem (item) {
     if (item instanceof ShopItem) {
-      if (this.shopItems.indexOf(item) === -1) {
+      if (this._shopItems.indexOf(item) === -1) {
         this._errorItemDoesntExist()
-      } else if (this.shopItems.indexOf(item) > -1) {
-        let listItem = this.shopItems[this.shopItems.indexOf(item)]
+      } else if (this._shopItems.indexOf(item) > -1) {
+        let listItem = this._shopItems[this._shopItems.indexOf(item)]
         listItem.removeUnit()
-        if (listItem.quantity <= 0) {
-          this.shopItems.splice(this.shopItems.indexOf(item), 1)
+        if (listItem.getQuantity() <= 0) {
+          this._shopItems.splice(this._shopItems.indexOf(item), 1)
         }
       }
     } else {
@@ -38,16 +46,6 @@ class Shop {
       shopItem.removeUnit()
     }
   }
-  setCurrency (currency) {
-    if (currency instanceof Currency) {
-      this.currency = currency
-    } else {
-      throw new Error('Invalid currency')
-    }
-  }
-  getCurrency () {
-    return this.currency
-  }
   interaction (character) {
     return {
       buy: this._buyer(character),
@@ -55,25 +53,28 @@ class Shop {
     }
   }
   _seller (character) {
-    return (item) => {
+    return (shopItem) => {
       return new Promise((resolve, reject) => {
-        if (!character.inventory.hasItem(item)) return reject(new Error('Character must have the item to sell'))
-        character.inventory.drop(item)
-        character.bank.earn(this._getItemPrice(item))
-        resolve(true)
+        if (!(shopItem instanceof ShopItem)) shopItem = new ShopItem(shopItem)
+        let characterItem = shopItem.getItem()
+        if (!character.inventory.hasItem(characterItem)) {
+          return reject(new Error('Character must have the item to sell'))
+        }
+        character.inventory.drop(characterItem)
+        return character.bank.earn(shopItem.getPrice()).then(resolve).catch(reject)
       })
     }
   }
   _buyer (character) {
     return (shopItem) => {
       return new Promise((resolve, reject) => {
-        if (this.shopItems.indexOf(shopItem) === -1) return reject(new Error('Item not available in shop'))
+        if (this._shopItems.indexOf(shopItem) === -1) return reject(new Error('Item not available in shop'))
         let price = shopItem.getPrice()
-        let characterCurrency = character.bank.get({name: price.name})
-        if (characterCurrency.value >= price.value) {
+        let characterCurrency = character.bank.get(price.getName())
+        if (characterCurrency.getValue() >= price.getValue()) {
           character.bank.lose(price).then(() => {
             this.removeItem(shopItem)
-            return character.inventory.carry(shopItem.item)
+            return character.inventory.carry(shopItem.getItem())
           }).then(resolve).catch(reject)
         } else {
           reject(new Error(`Character can't afford`))
@@ -81,13 +82,8 @@ class Shop {
       })
     }
   }
-  _getItemPrice () {
-    let price = Object.assign({}, this.getCurrency())
-    price.value = 1000 // #TODO generate a value according item's attributes and level
-    return price
-  }
   _getItem (item) {
-    return this.shopItems.filter(shopItem => shopItem.item === item)[0] || null
+    return this._shopItems.filter(shopItem => shopItem.getItem().getName() === item.getName())[0] || null
   }
   _errorItemDoesntExist () {
     throw new Error('Shop item doesn\'t exist')

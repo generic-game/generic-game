@@ -1,20 +1,20 @@
 class Status {
   constructor ({character}) {
-    Object.assign(this, {character})
+    this._character = character
   }
   get (name) {
     let status = {}
-    this._addToStatus(status, this.character.equipament.getModifiers())
-    this._addToStatus(status, this.character.characteristics.getAll())
+    this._addToStatus(status, this._character.equipament.getModifiers())
+    this._addToStatus(status, this._character.characteristics.getCharacteristics())
     return name ? status[name] || 0 : status
   }
   _addToStatus (status, characteristics) {
     characteristics.forEach(characteristic => {
-      if (!characteristic || !characteristic.name) return
-      if (status[characteristic.name]) {
-        status[characteristic.name] += (characteristic.value)
+      if (!characteristic || !characteristic.getName || !characteristic.getValue) return
+      if (status[characteristic.getName()]) {
+        status[characteristic.getName()] += characteristic.getValue()
       } else {
-        status[characteristic.name] = (characteristic.value)
+        status[characteristic.getName()] = characteristic.getValue()
       }
     })
     return status

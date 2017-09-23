@@ -3,7 +3,13 @@ import { Item } from '../../general'
 class Vest extends Item {
   constructor ({name, type, slotType, effects}) {
     super({name, type, slotType})
-    Object.assign(this, {effects})
+    this._effects = effects
+  }
+  setEffects (effects) {
+    this._effects = effects
+  }
+  getEffects () {
+    return this._effects
   }
 }
 

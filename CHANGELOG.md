@@ -1,3 +1,7 @@
+### 0.2.0 (2017-09-23)
+
+- All classes only have private variables. Must use getters and setters.
+
 #### 0.1.4 (2017-09-08)
 
 - `Character` now instanciates `Identity`, `Equipament` and `Bank` using the

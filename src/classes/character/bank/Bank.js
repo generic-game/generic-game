@@ -1,8 +1,11 @@
+import { Currency } from 'classes'
+import { clone } from 'helpers'
+
 class Bank {
   constructor ({currencies = []}) {
     if (Array.isArray(currencies)) {
       currencies = currencies.reduce((obj, currency) => {
-        obj[this._parseName(currency.name)] = currency
+        obj[this._parseName(currency.getName())] = currency
         return obj
       }, {})
     }
@@ -13,34 +16,43 @@ class Bank {
   }
   lose (currency) {
     return new Promise((resolve, reject) => {
-      currency = Object.assign({}, currency)
-      let name = this._parseName(currency.name)
+      currency = clone(currency)
+      let name = this._parseName(currency.getName())
       if (this._currencies[name]) {
-        this._currencies[name].value -= Math.abs(currency.value)
+        this._currencies[name].putValue(-Math.abs(currency.getValue()))
       } else {
-        currency.value = -Math.abs(currency.value)
+        currency.setValue(-Math.abs(currency.getValue()))
         this._currencies[name] = currency
       }
       resolve(this._currencies[name])
     })
   }
-  get ({name}) {
+  get (currency) {
+    let name = currency && typeof currency !== 'string' && currency.getName ? currency.getName() : currency
     name = this._parseName(name)
-    return name ? (this._currencies[name] || {}) : {}
+    return name ? (this._currencies[name] || this._emptyCurrency()) : this._emptyCurrency()
   }
   earn (currency) {
     return new Promise((resolve, reject) => {
-      let name = this._parseName(currency.name)
+      currency = clone(currency)
+      let name = this._parseName(currency.getName())
       if (this._currencies[name]) {
-        this._currencies[name].value += Math.abs(currency.value)
+        this._currencies[name].putValue(Math.abs(currency.getValue()))
       } else {
-        this._currencies[name] = Object.assign(Object.create(currency), currency)
+        this._currencies[name] = currency
       }
       resolve(this._currencies[name])
     })
   }
   _parseName (name) {
     return String(name).toLowerCase()
+  }
+  _emptyCurrency () {
+    return new Currency({
+      name: 'Empty',
+      symbol: 'N/A',
+      value: 0
+    })
   }
 }
 

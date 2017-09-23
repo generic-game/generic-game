@@ -11,15 +11,15 @@ describe('inventory', () => {
         new gg.class.Item({name: 'Item name', type: 'equipable', slotType: 'handheld'})
       ]
     })
-    expect(inventory.items.length).toBe(1)
+    expect(inventory.getItems().length).toBe(1)
   })
   test('should\'nt initialize with invalid items', () => {
     expect(() => new gg.class.Inventory({items: [{name: 'Item name', type: 'sword', slotType: 'handheld'}]})).toThrow(new Error('Invalid items'))
   })
   test('should able to carry an item', () => {
     return hero.inventory.carry(sword).then(() => {
-      expect(hero.inventory.items.length).toBe(1)
-      expect(hero.inventory.items[0].name).toBe('Great sword')
+      expect(hero.inventory.getItems().length).toBe(1)
+      expect(hero.inventory.getItems()[0].getName()).toBe('Great sword')
     })
   })
   test('should\'nt be able to carry an invalid item', () => {
@@ -30,10 +30,10 @@ describe('inventory', () => {
   })
   test('should able to drop a item', () => {
     return hero.inventory.drop(sword).then(() => {
-      expect(hero.inventory.items.length).toBe(0)
+      expect(hero.inventory.getItems().length).toBe(0)
       return hero.inventory.carry(helmet).then(() => {
-        expect(hero.inventory.items.length).toBe(1)
-        expect(hero.inventory.items[0].name).toBe('Armet')
+        expect(hero.inventory.getItems().length).toBe(1)
+        expect(hero.inventory.getItems()[0].getName()).toBe('Armet')
       })
     })
   })
@@ -42,11 +42,14 @@ describe('inventory', () => {
   })
   test('should able to take item from inventory', () => {
     let shouldBeHelmet = hero.inventory.get(0)
-    expect(hero.inventory.items.length).toBe(0)
-    expect(shouldBeHelmet.name).toBe('Armet')
+    expect(hero.inventory.getItems().length).toBe(0)
+    expect(shouldBeHelmet.getName()).toBe('Armet')
   })
   test('should return null if index is invalid', () => {
     let item = hero.inventory.get(10)
     expect(item).toBe(null)
+  })
+  test('should throw if try to increase capacity with invalid numbers', () => {
+    expect(() => hero.inventory.increaseCapacity('a')).toThrow(new Error('Inventory increase capacity argument must be a number'))
   })
 })

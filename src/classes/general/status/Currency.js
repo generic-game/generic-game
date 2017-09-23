@@ -1,17 +1,33 @@
 class Currency {
   constructor ({name, symbol, value = 0}) {
     this.setValue(value)
-    Object.assign(this, {name, symbol})
+    this._name = name
+    this._symbol = symbol
+  }
+  getName () {
+    return this._name
+  }
+  setName (name) {
+    this._name = name
+  }
+  getSymbol () {
+    return this._symbol
+  }
+  setSymbol (symbol) {
+    this._symbol = symbol
   }
   setValue (value) {
     if (typeof value !== 'number') throw new Error('Currency value must be a number')
-    this.value = value
+    this._value = value
+  }
+  putValue (value) {
+    this._value += value
   }
   getValue () {
-    return this.value
+    return this._value
   }
   format () {
-    return `${this.symbol} ${this.value}`
+    return `${this._symbol} ${this._value}`
   }
 }
 
