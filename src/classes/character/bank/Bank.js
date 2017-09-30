@@ -1,21 +1,19 @@
 import { Currency } from 'classes'
-import { clone } from 'helpers'
+import { clone, parseToInstance } from 'helpers'
 
 class Bank {
   constructor ({currencies = []}) {
-    if (Array.isArray(currencies)) {
-      currencies = currencies.reduce((obj, currency) => {
-        obj[this._parseName(currency.getName())] = currency
-        return obj
-      }, {})
-    }
-    this._currencies = currencies
+    this._currencies = this._parseCurrencies(currencies)
+  }
+  setCurrencies (currencies) {
+    this._currencies = this._parseCurrencies(currencies)
   }
   getCurrencies () {
     return this._currencies
   }
   lose (currency) {
     return new Promise((resolve, reject) => {
+      currency = this._parseCurrency(currency)
       currency = clone(currency)
       let name = this._parseName(currency.getName())
       if (this._currencies[name]) {
@@ -34,6 +32,7 @@ class Bank {
   }
   earn (currency) {
     return new Promise((resolve, reject) => {
+      currency = this._parseCurrency(currency)
       currency = clone(currency)
       let name = this._parseName(currency.getName())
       if (this._currencies[name]) {
@@ -53,6 +52,19 @@ class Bank {
       symbol: 'N/A',
       value: 0
     })
+  }
+  _parseCurrencies (currencies) {
+    if (Array.isArray(currencies)) {
+      return currencies.reduce((obj, currency) => {
+        obj[this._parseName((currency.name || currency.getName()))] = this._parseCurrency(currency)
+        return obj
+      }, {})
+    } else {
+      return []
+    }
+  }
+  _parseCurrency (currency) {
+    return parseToInstance(Currency, [currency])[0]
   }
 }
 

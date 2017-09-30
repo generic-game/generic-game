@@ -25,6 +25,53 @@ describe('bank', () => {
     })
     expect(Object.keys(bank.getCurrencies()).length).toBe(2)
   })
+  test('should initialize without a list of currencies', () => {
+    const bank = new gg.class.Bank({
+      currencies: [
+        {
+          name: 'Gold',
+          symbol: 'G',
+          value: 1000
+        },
+        {
+          name: 'Cash',
+          symbol: '$',
+          value: 1000
+        }
+      ]
+    })
+    expect(Object.keys(bank.getCurrencies()).length).toBe(2)
+  })
+  test('should set list of currencies', () => {
+    const bank = new gg.class.Bank({
+      currencies: [
+        {
+          name: 'Gold',
+          symbol: 'G',
+          value: 1000
+        },
+        {
+          name: 'Cash',
+          symbol: '$',
+          value: 1000
+        }
+      ]
+    })
+    bank.setCurrencies([
+      {
+        name: 'Gold',
+        symbol: 'G',
+        value: 100
+      }
+    ])
+    expect(Object.keys(bank.getCurrencies()).length).toBe(1)
+  })
+  test('should inicialize with no currencies if currencies argument is invalid', () => {
+    const bank = new gg.class.Bank({
+      currencies: 'not an array'
+    })
+    expect(Object.keys(bank.getCurrencies()).length).toBe(0)
+  })
   test('should earn gold', () => {
     return hero.bank.earn(pack).then(() => {
       expect(hero.bank.get('Gold').getValue()).toBe(1000)

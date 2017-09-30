@@ -1,3 +1,12 @@
+#### 0.2.1 (2017-09-30)
+
+- `Weapon` now allows `attacks` argument to be an array of objects instead an array `Attack` instances
+- `Character` now allows `characteristics` argument to be an array of objects instead an array `Characteristic` instances
+- `Equipament` now allows `slots` argument to be an array of objects instead an array `Slot` instances
+- `Vest` now allows `effects` argument to be an array of objects instead an array `Characteristic` instances
+- `Bank` now allows `currencies` argument to be an array of objects instead an array `Currency` instances
+- `Bank` now allows to use object for `currency` in `earn` and `lose` methods
+
 ### 0.2.0 (2017-09-23)
 
 - All classes only have private variables. Must use getters and setters.

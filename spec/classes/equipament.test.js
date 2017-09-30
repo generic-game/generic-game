@@ -7,16 +7,21 @@ let dagger = factory.dagger()
 let helmet = factory.helmet()
 
 describe('equipament', () => {
-  test('should initialize with valid slots', () => {
+  test('should initialize without slots intances', () => {
     let equipament = new gg.class.Equipament({
       slots: [
-        new gg.class.Slot({type: 'Valid type'})
+        {type: 'Some type'}
       ]
     })
     expect(equipament.getSlots().length).toBe(1)
   })
-  test('should\'nt initialize with invalid slots', () => {
-    expect(() => new gg.class.Equipament({slots: [{type: {name: 'Dummy name'}}]})).toThrow(new Error('Invalid slots'))
+  test('should initialize with slots instances', () => {
+    let equipament = new gg.class.Equipament({
+      slots: [
+        new gg.class.Slot({type: 'Some type'})
+      ]
+    })
+    expect(equipament.getSlots().length).toBe(1)
   })
   test('should not unable to equip in unexistent slots', () => {
     expect(hero.equipament.equip(dagger)).rejects.toEqual(new Error('No available slot'))

@@ -1,11 +1,14 @@
-import { Characteristic } from '../../general'
-import { characteristic, character } from '../../../constants'
+import { parseToInstance } from 'helpers'
+import { Characteristic } from 'classes'
+import { characteristic, character } from 'constants'
 
 class Characteristics {
   constructor ({characteristics = []}) {
-    if (characteristics.length && !this._isValidCharacteristics(characteristics)) throw new Error('Invalid characteristics')
-    this._characteristics = characteristics
+    this._characteristics = this._parseCharacteristics(characteristics)
     this._checkDefaultCharacteristics()
+  }
+  setCharacteristics (characteristics) {
+    return this._parseCharacteristics(characteristics)
   }
   getCharacteristics () {
     return this._characteristics
@@ -50,8 +53,8 @@ class Characteristics {
       this.add(name, value)
     }
   }
-  _isValidCharacteristics (characteristics) {
-    return characteristics.filter(characteristic => !(characteristic instanceof Characteristic)).length === 0
+  _parseCharacteristics (characteristics) {
+    return parseToInstance(Characteristic, characteristics)
   }
 }
 

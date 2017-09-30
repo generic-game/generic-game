@@ -3,7 +3,15 @@ import { gg, factory } from '../helpers'
 let sword = factory.sword()
 
 describe('weapon', () => {
-  test('should set attacks', () => {
+  test('should set attacks without instance', () => {
+    let sword = factory.sword()
+    sword.setAttacks([
+      {damage: 10, delay: 100},
+      {damage: 100, delay: 100}
+    ])
+    expect(sword.getAttacks().length).toBe(2)
+  })
+  test('should set attacks with instance', () => {
     sword.setAttacks([
       new gg.class.Attack({damage: 10, delay: 100})
     ])

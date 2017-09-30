@@ -1,11 +1,10 @@
-import { Slot } from '../../general'
-import { Weapon } from '../../items'
+import { Slot, Weapon, Item } from 'classes'
+import { parseToInstance } from 'helpers'
 
 class Equipament {
   constructor ({items = [], slots = []}) {
-    if (slots.length && !this._isValidSlots(slots)) throw new Error('Invalid slots')
-    this._items = items
-    this._slots = slots
+    this._items = this._parseItems(items)
+    this._slots = this._parseSlots(slots)
   }
   getSlots () {
     return this._slots
@@ -40,8 +39,11 @@ class Equipament {
   addSlot ({type, capacity = 1}) {
     this._slots.push(new Slot({type, capacity}))
   }
-  _isValidSlots (slots) {
-    return slots.filter(slot => !(slot instanceof Slot)).length === 0
+  _parseItems (items) {
+    return parseToInstance(Item, items)
+  }
+  _parseSlots (slots) {
+    return parseToInstance(Slot, slots)
   }
   _countItemsFromSlot (slot) {
     return this._items.filter(item => item.getSlotType().getName() === slot.getType().getName()).length
