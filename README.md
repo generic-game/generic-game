@@ -10,24 +10,55 @@
 [![npm](https://img.shields.io/npm/dm/generic-game.svg)]()
 [![npm](https://img.shields.io/npm/dy/generic-game.svg)]()
 
+### Introduction
+
+Generic Game is a fully covered object oriented ES6 Javascript library for creating
+RPG games. This set of tools will be the start point to any RPG game Javascript based.
+
+### What is it for?
+
+Considering most games usually follows the same structure, character creation,
+leveling, items, skills. This would be a fully tested implementation of those
+features. It is useful for creating a controlled enviroment for RPG based
+systems. Here's some tips: _board/card games_; _chatbot games_; _MUD games_.
+
 ### Usage
+
+After installing Generic Game in your project by using:
 
 `npm install --save generic-game`
 
-Simple example using ES6:
+you can take advantage of it's prebuilt classes. Let's say you need to make a
+game where a hero can be equiped with a sword to kill things (like every RPG game).
+
+So you use GenericGame:
 
 ```
 import GenericGame from 'generic-game'
 const gg = new GenericGame()
+```
 
+then create the hero scope:
+
+```
 const hero = new gg.class.Character({
   name: 'Generic hero'
 })
+hero.equipament.addSlot({type: 'handheld'})
+```
+
+and the hero's enemy:
+
+```
 const mob = new gg.class.Character({
   name: 'Generic mob'
 })
+mob.equipament.addSlot({type: 'handheld'})
+```
 
-hero.equipament.addSlot({type: 'handheld'})
+equip them:
+
+```
 hero.equipament.equip(new gg.class.Weapon({
   name: 'Great sword',
   type: gg.const.item.EQUIPABLE,
@@ -36,7 +67,6 @@ hero.equipament.equip(new gg.class.Weapon({
     {damage: 10, delay: 100}
   ]
 }))
-mob.equipament.addSlot({type: 'handheld'})
 mob.equipament.equip(new gg.class.Weapon({
   name: 'Dagger',
   type: gg.const.item.EQUIPABLE,
@@ -45,7 +75,11 @@ mob.equipament.equip(new gg.class.Weapon({
     {damage: 1, delay: 100}
   ]
 }))
+```
 
+to finally battle:
+
+```
 hero.events.on('battle:[after]takingDamage', ({ status }) => {
   console.log(`Hero received ${status.damage} damage!`)
 })
@@ -55,7 +89,26 @@ hero.battle.conflict(mob).then(() => {
 })
 ```
 
+### Examples
+
+I'll disapoint you for a moment here, I'm currently building something with it. If you want to contribute, let me know to add here.
 
 ### Documentation
 
-Documentation is [available here](https://github.com/generic-game/generic-game/wiki).
+Documentation is [available here](http://genericgame.io/docs/).
+
+
+### In case any bug
+
+Feel free to add issues in the [repository project](https://github.com/generic-game/generic-game/issues)
+
+
+### Contributing
+
+```sh
+git clone https://github.com/generic-game/generic-game.git
+cd generic-game
+npm i
+```
+
+Read the [CONTRIBUTING.md](https://github.com/generic-game/generic-game/blob/master/README.md) for more information.
