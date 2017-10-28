@@ -22,6 +22,10 @@ leveling, items, skills. This would be a fully tested implementation of those
 features. It is useful for creating a controlled enviroment for RPG based
 systems. Here's some tips: _board/card games_; _chatbot games_; _MUD games_.
 
+### Features
+
+Check out this [mindmap with the features](https://mm.tt/980332006?t=50iwwoQgIE).
+
 ### Usage
 
 After installing Generic Game in your project by using:
