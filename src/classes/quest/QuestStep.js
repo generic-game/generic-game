@@ -12,7 +12,7 @@ class QuestStep {
     return this._reward
   }
   completeStep () {
-    return this._action().then(() => (this._completed = true))
+    return this._action().then((isCompleted) => (this._completed = isCompleted))
   }
   isCompleted () {
     return this._completed

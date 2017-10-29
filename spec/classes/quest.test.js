@@ -153,7 +153,7 @@ describe('quest', () => {
         reward: new gg.class.Experience({
           value: 1000
         }),
-        action: () => hero.battle.conflict(king)
+        action: () => hero.battle.conflict(king).then(() => !king.battle.isAlive())
       }]
     })
 
@@ -183,7 +183,7 @@ describe('quest', () => {
         reward: new gg.class.Experience({
           value: 1000
         }),
-        action: () => superHero.battle.attack(weakKing)
+        action: () => superHero.battle.attack(weakKing).then(() => !weakKing.battle.isAlive())
       }]
     })
 
