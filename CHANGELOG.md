@@ -1,3 +1,7 @@
+#### 0.2.2 (2017-10-29)
+
+- Issue #2: [Battle] Improvement: Update quest if requirements match @theTechie. `QuestStep` now have an `action` method, if the method return `true`, the quest step is done.
+
 #### 0.2.1 (2017-09-30)
 
 - `Weapon` now allows `attacks` argument to be an array of objects instead an array `Attack` instances
