@@ -1,6 +1,7 @@
 import { gg, factory } from '../helpers'
 
 let hero = factory.hero()
+let king = factory.villian()
 let questText = 'You should kill something'
 let quest = new gg.class.Quest({
   text: questText
@@ -143,5 +144,73 @@ describe('quest', () => {
   test(`should'n be able to receive reward if already received reward`, () => {
     quest = hero.quests.getQuests()[0]
     return expect(hero.interact(quest).claimReward()).rejects.toEqual(new Error('Quest reward already claimed'))
+  })
+  test('should update once requirement is done: conflict', () => {
+    quest = new gg.class.Quest({
+      text: 'become the king of this kingdom',
+      steps: [{
+        text: 'kill the king',
+        reward: new gg.class.Experience({
+          value: 1000
+        }),
+        action: () => hero.battle.conflict(king).then(() => !king.battle.isAlive())
+      }]
+    })
+
+    hero.equipament.addSlot({type: 'handheld'})
+    hero.equipament.equip(factory.sword())
+
+    king.equipament.addSlot({type: 'handheld'})
+    king.equipament.equip(factory.dagger())
+
+    return hero.interact(quest).join().then(() => {
+      return hero.interact(quest).completeStep(0).then(() => {
+        expect(hero.quests.findQuest(quest).getSteps()[0].isCompleted()).toBe(true)
+        expect(hero.battle.isAlive()).toBe(true)
+        expect(king.battle.isAlive()).toBe(false)
+      })
+    })
+  })
+
+  test('should update once requirement is done: massive attack', () => {
+    const superHero = factory.hero()
+    const weakKing = factory.villian()
+
+    quest = new gg.class.Quest({
+      text: 'become the king of this kingdom',
+      steps: [{
+        text: 'kill the king',
+        reward: new gg.class.Experience({
+          value: 1000
+        }),
+        action: () => superHero.battle.attack(weakKing).then(() => !weakKing.battle.isAlive())
+      }]
+    })
+
+    const theWeapon = new gg.class.Weapon({
+      name: 'The Weapon',
+      type: gg.const.item.EQUIPABLE,
+      slotType: {name: 'handheld'},
+      attacks: [
+        new gg.class.Attack({damage: 100, delay: 100})
+      ],
+      effects: [
+        new gg.class.Effect({characteristic: 'defense', amount: -1})
+      ]
+    })
+
+    superHero.equipament.addSlot({type: 'handheld'})
+    superHero.equipament.equip(theWeapon)
+
+    weakKing.equipament.addSlot({type: 'handheld'})
+    weakKing.equipament.equip(factory.dagger())
+
+    return superHero.interact(quest).join().then(() => {
+      return superHero.interact(quest).completeStep(0).then(() => {
+        expect(superHero.quests.findQuest(quest).getSteps()[0].isCompleted()).toBe(true)
+        expect(superHero.battle.isAlive()).toBe(true)
+        expect(weakKing.battle.isAlive()).toBe(false)
+      })
+    })
   })
 })
