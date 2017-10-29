@@ -1,7 +1,8 @@
 class QuestStep {
-  constructor ({text, reward = null}) {
+  constructor ({text, reward = null, action = () => Promise.resolve(true)}) {
     this._text = text
     this._reward = reward
+    this._action = action
     this._completed = false
   }
   getText () {
@@ -11,7 +12,7 @@ class QuestStep {
     return this._reward
   }
   completeStep () {
-    this._completed = true
+    return this._action().then(() => (this._completed = true))
   }
   isCompleted () {
     return this._completed

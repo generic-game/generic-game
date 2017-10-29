@@ -76,7 +76,7 @@ class Quest {
   _stepCompleter (character) {
     return (stepIndex) => {
       return this._validatePossession(character).then(() => {
-        this.getSteps()[stepIndex].completeStep()
+        return this.getSteps()[stepIndex].completeStep()
       })
     }
   }
