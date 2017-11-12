@@ -157,11 +157,11 @@ describe('quest', () => {
       }]
     })
 
-    hero.equipament.addSlot({type: 'handheld'})
-    hero.equipament.equip(factory.sword())
+    hero.equipment.addSlot({type: 'handheld'})
+    hero.equipment.equip(factory.sword())
 
-    king.equipament.addSlot({type: 'handheld'})
-    king.equipament.equip(factory.dagger())
+    king.equipment.addSlot({type: 'handheld'})
+    king.equipment.equip(factory.dagger())
 
     return hero.interact(quest).join().then(() => {
       return hero.interact(quest).completeStep(0).then(() => {
@@ -199,11 +199,11 @@ describe('quest', () => {
       ]
     })
 
-    superHero.equipament.addSlot({type: 'handheld'})
-    superHero.equipament.equip(theWeapon)
+    superHero.equipment.addSlot({type: 'handheld'})
+    superHero.equipment.equip(theWeapon)
 
-    weakKing.equipament.addSlot({type: 'handheld'})
-    weakKing.equipament.equip(factory.dagger())
+    weakKing.equipment.addSlot({type: 'handheld'})
+    weakKing.equipment.equip(factory.dagger())
 
     return superHero.interact(quest).join().then(() => {
       return superHero.interact(quest).completeStep(0).then(() => {

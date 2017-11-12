@@ -42,7 +42,7 @@ class Battle {
   attack (character) {
     return new Promise((resolve, reject) => {
       let attack = this._character.status.get('attack')
-      let weapons = this._character.equipament.getWeapons()
+      let weapons = this._character.equipment.getWeapons()
       if (!weapons.length) {
         reject(new Error('Character can\'t attack without a weapon'))
       }

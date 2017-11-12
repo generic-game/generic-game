@@ -1,6 +1,6 @@
 import EventEmmiter from 'events'
 import Inventory from './inventory/Inventory'
-import Equipament from './equipament/Equipament'
+import Equipment from './equipment/Equipment'
 import Characteristics from './characteristics/Characteristics'
 import Battle from './battle/Battle'
 import Status from './status/Status'
@@ -10,11 +10,11 @@ import Experience from './experience/Experience'
 import Quests from './quests/Quests'
 
 class Character {
-  constructor ({identity = {}, experience = 0, items = [], equipament = {}, bank = {}, characteristics = [], inventory = {}}) {
+  constructor ({identity = {}, experience = 0, items = [], equipment = {}, bank = {}, characteristics = [], inventory = {}}) {
     this.identity = new Identity(identity)
     this.events = new EventEmmiter()
     this.inventory = new Inventory(inventory)
-    this.equipament = new Equipament(equipament)
+    this.equipment = new Equipment(equipment)
     this.characteristics = new Characteristics({characteristics})
     this.battle = new Battle({character: this})
     this.status = new Status({character: this})

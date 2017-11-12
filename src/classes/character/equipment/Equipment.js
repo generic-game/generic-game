@@ -1,7 +1,7 @@
 import { Slot, Weapon, Item } from 'classes'
 import { parseToInstance } from 'helpers'
 
-class Equipament {
+class Equipment {
   constructor ({items = [], slots = []}) {
     this._items = this._parseItems(items)
     this._slots = this._parseSlots(slots)
@@ -50,4 +50,4 @@ class Equipament {
   }
 }
 
-export default Equipament
+export default Equipment

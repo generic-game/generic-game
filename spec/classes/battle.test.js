@@ -1,8 +1,8 @@
 import { factory } from '../helpers'
 
 let hero = factory.hero()
-hero.equipament.addSlot({type: 'handheld'})
-hero.equipament.equip(factory.sword())
+hero.equipment.addSlot({type: 'handheld'})
+hero.equipment.equip(factory.sword())
 
 let villian = factory.villian()
 
@@ -19,8 +19,8 @@ describe('battle', () => {
   })
   describe('battle events', () => {
     villian = factory.villian()
-    villian.equipament.addSlot({type: 'handheld'})
-    villian.equipament.equip(factory.dagger())
+    villian.equipment.addSlot({type: 'handheld'})
+    villian.equipment.equip(factory.dagger())
     test('should trigger events', () => {
       const mockCallback = jest.fn()
       villian.events.on('battle:[before]defend', mockCallback)
@@ -58,8 +58,8 @@ describe('battle', () => {
   })
   test('should battle until death', () => {
     villian = factory.villian()
-    villian.equipament.addSlot({type: 'handheld'})
-    villian.equipament.equip(factory.dagger())
+    villian.equipment.addSlot({type: 'handheld'})
+    villian.equipment.equip(factory.dagger())
     return hero.battle.conflict(villian).then(() => {
       expect(villian.battle.isAlive()).toBe(false)
     })

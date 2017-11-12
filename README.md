@@ -48,7 +48,7 @@ then create the hero scope:
 const hero = new gg.class.Character({
   name: 'Generic hero'
 })
-hero.equipament.addSlot({type: 'handheld'})
+hero.equipment.addSlot({type: 'handheld'})
 ```
 
 and the hero's enemy:
@@ -57,13 +57,13 @@ and the hero's enemy:
 const mob = new gg.class.Character({
   name: 'Generic mob'
 })
-mob.equipament.addSlot({type: 'handheld'})
+mob.equipment.addSlot({type: 'handheld'})
 ```
 
 equip them:
 
 ```
-hero.equipament.equip(new gg.class.Weapon({
+hero.equipment.equip(new gg.class.Weapon({
   name: 'Great sword',
   type: gg.const.item.EQUIPABLE,
   slotType: {name: 'handheld'},
@@ -71,7 +71,7 @@ hero.equipament.equip(new gg.class.Weapon({
     {damage: 10, delay: 100}
   ]
 }))
-mob.equipament.equip(new gg.class.Weapon({
+mob.equipment.equip(new gg.class.Weapon({
   name: 'Dagger',
   type: gg.const.item.EQUIPABLE,
   slotType: {name: 'handheld'},

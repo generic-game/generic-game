@@ -4,7 +4,7 @@ class Status {
   }
   get (name) {
     let status = {}
-    this._addToStatus(status, this._character.equipament.getModifiers())
+    this._addToStatus(status, this._character.equipment.getModifiers())
     this._addToStatus(status, this._character.characteristics.getCharacteristics())
     return name ? status[name] || 0 : status
   }

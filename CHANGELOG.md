@@ -1,12 +1,16 @@
+#### 0.2.3 (2017-11-12)
+
+- [Issue #3](https://github.com/generic-game/generic-game/issues/2): Equipment typo. Changed `Equipament` to `Equipment`.
+
 #### 0.2.2 (2017-10-29)
 
-- Issue #2: [Battle] Improvement: Update quest if requirements match @theTechie. `QuestStep` now have an `action` method, if the method return `true`, the quest step is done.
+- [Issue #2](https://github.com/generic-game/generic-game/issues/2): [Battle] Improvement: Update quest if requirements match @theTechie. `QuestStep` now have an `action` method, if the method return `true`, the quest step is done.
 
 #### 0.2.1 (2017-09-30)
 
 - `Weapon` now allows `attacks` argument to be an array of objects instead an array `Attack` instances
 - `Character` now allows `characteristics` argument to be an array of objects instead an array `Characteristic` instances
-- `Equipament` now allows `slots` argument to be an array of objects instead an array `Slot` instances
+- `Equipment` now allows `slots` argument to be an array of objects instead an array `Slot` instances
 - `Vest` now allows `effects` argument to be an array of objects instead an array `Characteristic` instances
 - `Bank` now allows `currencies` argument to be an array of objects instead an array `Currency` instances
 - `Bank` now allows to use object for `currency` in `earn` and `lose` methods
@@ -17,7 +21,7 @@
 
 #### 0.1.4 (2017-09-08)
 
-- `Character` now instanciates `Identity`, `Equipament` and `Bank` using the
+- `Character` now instanciates `Identity`, `Equipment` and `Bank` using the
 parametters with names accordingly it's names istead several parametters for
 each class. Ex.: before was `new gg.class.Character({name, type})`, now is
 `new gg.class.Character({identity})`.
