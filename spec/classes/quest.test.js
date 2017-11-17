@@ -136,7 +136,7 @@ describe('quest', () => {
     quest = hero.quests.getQuests()[0]
     return hero.interact(quest).claimReward().then(() => {
       expect(quest.isCompleted()).toBe(true)
-      expect(hero.experience.getExperience()).toBe(10)
+      expect(hero.experience.getExperience()).toBe(15)
       expect(hero.bank.get('gold').getValue()).toBe(100)
       expect(hero.inventory.get(0)).toEqual(sword)
     })

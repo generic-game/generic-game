@@ -1,3 +1,8 @@
+#### 0.2.4 (2017-11-17)
+
+- `Character.Bank` constructor now accepts a object of currencies as `currencies` argument
+- `Character` fix experience constructor
+
 #### 0.2.3 (2017-11-12)
 
 - [Issue #3](https://github.com/generic-game/generic-game/issues/2): Equipment typo. Changed `Equipament` to `Equipment`.

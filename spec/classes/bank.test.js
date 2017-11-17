@@ -25,6 +25,19 @@ describe('bank', () => {
     })
     expect(Object.keys(bank.getCurrencies()).length).toBe(2)
   })
+  test('should initialize with a object of currencies', () => {
+    const bank = new gg.class.Bank({
+      currencies: {
+        gold: 12,
+        cash: {
+          name: 'Cash'
+        }
+      }
+    })
+    expect(Object.keys(bank.getCurrencies()).length).toBe(2)
+    expect(bank.getCurrencies().gold.getValue()).toBe(12)
+    expect(bank.getCurrencies().cash.getValue()).toBe(0)
+  })
   test('should initialize without a list of currencies', () => {
     const bank = new gg.class.Bank({
       currencies: [

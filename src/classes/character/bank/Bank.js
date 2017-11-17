@@ -59,6 +59,17 @@ class Bank {
         obj[this._parseName((currency.name || currency.getName()))] = this._parseCurrency(currency)
         return obj
       }, {})
+    } else if (currencies instanceof Object) {
+      return Object.keys(currencies).reduce((obj, name) => {
+        let data = { name }
+        if (typeof currencies[name] === 'number') {
+          data.value = currencies[name]
+        } else if (currencies[name] instanceof Object) {
+          data = Object.assign(data, currencies[name])
+        }
+        obj[this._parseName(name)] = this._parseCurrency(data)
+        return obj
+      }, {})
     } else {
       return []
     }

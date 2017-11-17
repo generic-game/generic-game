@@ -19,7 +19,7 @@ class Character {
     this.battle = new Battle({character: this})
     this.status = new Status({character: this})
     this.bank = new Bank(bank)
-    this.experience = new Experience({})
+    this.experience = new Experience({value: experience})
     this.quests = new Quests()
   }
   interact (thing) {

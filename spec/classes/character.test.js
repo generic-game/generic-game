@@ -12,7 +12,8 @@ describe('creating', () => {
 
 describe('levels', () => {
   test('should gain experience', () => {
-    return hero.experience.gain(9).then(success => {
+    // Hero constructs with 4 experience
+    return hero.experience.gain(5).then(success => {
       expect(success).toBe(true)
     })
   })

@@ -40,7 +40,8 @@ const factory = {
       identity: {
         name: 'Generic hero',
         type: 'Hero'
-      }
+      },
+      experience: 5
     })
   },
   villian () {
