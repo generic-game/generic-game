@@ -17,4 +17,11 @@ describe('experience', () => {
       expect(experience.computeLevel()).toBe(0)
     })
   })
+  test('should return if leveled up and how many levels', () => {
+    expect(experience.computeLevel()).toBe(0)
+    return experience.gain(200).then(({levelUp, levels}) => {
+      expect(levelUp).toBe(true)
+      expect(levels).toBe(2)
+    })
+  })
 })

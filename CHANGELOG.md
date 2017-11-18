@@ -1,3 +1,8 @@
+#### 0.2.5 (2017-11-18)
+
+- `Character.Experience` returns values if the character leveled up and how many levels: `hero.experience.gain(10).then({levelUp, levels})`
+- `Character.Identity` added getters/setters and gender attribute
+
 #### 0.2.4 (2017-11-17)
 
 - `Character.Bank` constructor now accepts a object of currencies as `currencies` argument

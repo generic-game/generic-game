@@ -12,14 +12,16 @@ describe('creating', () => {
 
 describe('levels', () => {
   test('should gain experience', () => {
-    // Hero constructs with 4 experience
-    return hero.experience.gain(5).then(success => {
-      expect(success).toBe(true)
+    // Hero constructs with 5 experience
+    return hero.experience.gain(4).then(({levelUp}) => {
+      expect(hero.experience.getExperience()).toBe(9)
+      expect(levelUp).toBe(false)
     })
   })
   test('should level up', () => {
-    return hero.experience.gain(1).then(success => {
-      expect(success).toBe(true)
+    return hero.experience.gain(1).then(({levelUp, levels}) => {
+      expect(levelUp).toBe(true)
+      expect(levels).toBe(1)
       expect(hero.getLevel()).toBe(1)
     })
   })

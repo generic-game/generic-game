@@ -10,12 +10,21 @@ class Experience {
     this._algorithm = algorithm
   }
   gain (amount) {
+    let currentLevel = this.computeLevel()
+    let levelUp = false
+    let levels = 0
     if (amount instanceof Experience) {
       this._value += amount.getExperience()
     } else if (typeof amount === 'number') {
       this._value += amount
     }
-    return Promise.resolve(true)
+    let newLevel = this.computeLevel()
+    if (newLevel > currentLevel) {
+      levels = newLevel - currentLevel
+      levelUp = true
+    }
+
+    return Promise.resolve({ levelUp, levels })
   }
   lose (amount) {
     this._value -= amount
