@@ -10,28 +10,40 @@ class Experience {
     this._algorithm = algorithm
   }
   gain (amount) {
-    let currentLevel = this.computeLevel()
-    let levelUp = false
-    let levels = 0
+    let snapshot = this._getSnapshot()
     if (amount instanceof Experience) {
       this._value += amount.getExperience()
     } else if (typeof amount === 'number') {
       this._value += amount
     }
-    let newLevel = this.computeLevel()
-    if (newLevel > currentLevel) {
-      levels = newLevel - currentLevel
-      levelUp = true
-    }
-
-    return Promise.resolve({ levelUp, levels })
+    return Promise.resolve(snapshot.compare())
   }
   lose (amount) {
+    let snapshot = this._getSnapshot()
     this._value -= amount
     if (this._value < 0) {
       this._value = 0
     }
-    return Promise.resolve(true)
+    return Promise.resolve(snapshot.compare())
+  }
+  _getSnapshot () {
+    let snapshot = {
+      experienceOld: this.getExperience(),
+      experienceChange: 0,
+      levelOld: this.computeLevel(),
+      levelChange: 0
+    }
+    return {
+      compare: function () {
+        let newLevel = this.computeLevel()
+        let newExperience = this.getExperience()
+        snapshot.levelChange = Math.abs(newLevel) - Math.abs(snapshot.levelOld)
+        snapshot.experienceChange = Math.abs(newExperience) - Math.abs(snapshot.experienceOld)
+        snapshot.levelNew = newLevel
+        snapshot.experienceNew = newExperience
+        return snapshot
+      }.bind(this)
+    }
   }
   computeLevel () {
     return this._algorithm(this._value)

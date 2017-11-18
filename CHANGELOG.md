@@ -1,3 +1,7 @@
+#### 0.2.6 (2017-11-18)
+
+- `Character.Experience` improved return results: `hero.experience.gain(100).then({levelOld, levelNew, levelChange, experienceOld, experienceChange, experienceNew})`
+
 #### 0.2.5 (2017-11-18)
 
 - `Character.Experience` returns values if the character leveled up and how many levels: `hero.experience.gain(10).then({levelUp, levels})`

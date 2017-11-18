@@ -1,6 +1,6 @@
 {
   "name": "generic-game",
-  "version": "0.2.5",
+  "version": "0.2.6",
   "description": "A generic game composed of usual RPG game components",
   "homepage": "http://genericgame.io",
   "main": "dist/index.js",
