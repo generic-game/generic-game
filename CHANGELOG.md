@@ -1,3 +1,7 @@
+#### 0.2.7 (2017-12-09)
+
+- Adding `Character.Role` feature #3
+
 #### 0.2.6 (2017-11-18)
 
 - `Character.Experience` improved return results: `hero.experience.gain(100).then({levelOld, levelNew, levelChange, experienceOld, experienceChange, experienceNew})`

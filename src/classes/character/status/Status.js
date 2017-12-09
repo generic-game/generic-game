@@ -6,6 +6,8 @@ class Status {
     let status = {}
     this._addToStatus(status, this._character.equipment.getModifiers())
     this._addToStatus(status, this._character.characteristics.getCharacteristics())
+    this._addToStatus(status, this._character.role.getCharacteristics())
+
     return name ? status[name] || 0 : status
   }
   _addToStatus (status, characteristics) {

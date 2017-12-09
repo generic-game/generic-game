@@ -3,9 +3,9 @@ import { Characteristic } from 'classes'
 import { characteristic, character } from 'constants'
 
 class Characteristics {
-  constructor ({characteristics = []}) {
+  constructor ({characteristics = [], setDefault = true}) {
     this._characteristics = this._parseCharacteristics(characteristics)
-    this._checkDefaultCharacteristics()
+    if (setDefault) this._checkDefaultCharacteristics()
   }
   setCharacteristics (characteristics) {
     return this._parseCharacteristics(characteristics)

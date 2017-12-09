@@ -1,7 +1,8 @@
 class Identity {
-  constructor ({name = '', gender = '', type = ''}) {
+  constructor ({name = '', gender = '', type = '', role = ''}) {
     this._name = name
     this._type = type
+    this._role = role
     this._gender = gender
   }
   setGender (gender) {
@@ -24,6 +25,12 @@ class Identity {
   }
   getType () {
     return this._type
+  }
+  setRole (role) {
+    this._role = role
+  }
+  getRole () {
+    return this._role
   }
 }
 
