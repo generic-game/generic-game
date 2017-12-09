@@ -1,3 +1,7 @@
+#### 0.2.8 (2017-12-09)
+
+- `Character.status` now retuns experience, level and currencies with it's respective values
+
 #### 0.2.7 (2017-12-09)
 
 - Adding `Character.Role` feature #3
