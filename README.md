@@ -99,7 +99,7 @@ I'll disapoint you for a moment here, I'm currently building something with it. 
 
 ### Documentation
 
-Documentation is [available here](http://genericgame.io/docs/).
+Documentation is [available here](https://generic-game.github.io/docs).
 
 
 ### In case any bug

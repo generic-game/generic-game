@@ -32,6 +32,7 @@
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-stage-0": "^6.22.0",
     "babel-preset-stage-2": "^6.24.1",
+    "cz-conventional-changelog": "3.0.2",
     "eslint": "^6.1.0",
     "eslint-config-standard": "^7.0.1",
     "eslint-plugin-promise": "^3.5.0",
@@ -48,5 +49,10 @@
     "coverageReporters": [
       "lcov"
     ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }
